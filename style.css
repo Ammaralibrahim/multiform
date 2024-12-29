@@ -1,0 +1,359 @@
+/* Genel Sayfa Stil */
+body {
+  font-family: 'Poppins', Arial, sans-serif; /* Modern ve zarif bir yazı tipi */
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #000, #444); /* Modern hover efekti */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #444; /* Daha yumuşak bir metin rengi */
+  position: relative; /* Butonların konumlandırılabilmesi için */
+}
+
+/* Form Konteyneri */
+.form-container {
+  background-color: white;
+  padding: 30px;
+  margin: 10px 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Daha belirgin bir gölge */
+  width: 700px;
+  height: 600px;
+  max-width: 500px;
+  box-sizing: border-box;
+  border-radius: 10px; /* Köşeleri hafif yuvarlat */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative; /* Butonların form dışına çıkmaması için */
+}
+
+/* Adım Başlıkları */
+h2 {
+  font-size: 1.8rem; /* Biraz daha büyük başlık */
+  margin-bottom: 20px;
+  color: #222; /* Daha koyu başlık rengi */
+  font-weight: 600; /* Başlığı daha belirgin yap */
+}
+
+/* Form Adımları */
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+
+/* Kutucuklar */
+.box-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 kutu üst üste gelecek */
+  gap: 20px;
+}
+
+.box {
+  height: 200px;
+  width: 100%; /* Genişlik %100 olacak, böylece kare olacak */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  border-radius: 15px; /* Köşeleri yuvarlat */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge ekle */
+  overflow: hidden;
+}
+
+.box input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.box label {
+  font-size: 1.2rem;
+  color: #333; /* Metin rengini koyulaştır */
+  font-weight: 500; /* Yazıyı daha belirgin yap */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #f0f0f0, #ffffff); /* Hafif degrade arka plan */
+}
+
+/* Hover ve Seçili Durum */
+.box:hover {
+  background: linear-gradient(135deg, #000, #444); /* Modern hover efekti */
+  color: #fff; /* Yazı rengini beyaza çevir */
+  transform: scale(1.05); /* Kutuyu hafif büyüt */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Gölgeyi yoğunlaştır */
+}
+
+.box input:checked + label {
+  background: linear-gradient(135deg, #333, #000); /* Seçili durumda koyu degrade */
+  color: #fff; /* Yazı rengini beyaza çevir */
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.3); /* İç gölge ekle */
+}
+
+
+
+
+/* Yazı inputları */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 93%;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #555; /* Focus durumunda daha koyu bir çerçeve */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Hafif bir odak gölgesi */
+  background-color: #fff;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+  color: #888; /* Placeholder rengini yumuşat */
+  font-size: 0.95rem; /* Placeholder boyutunu optimize et */
+}
+
+
+/* Range Input */
+input[type="range"] {
+  -webkit-appearance: none; /* Varsayılan stili kaldır */
+  appearance: none;
+  width: 100%;
+  height: 8px; /* Kaydırıcı bar yüksekliği */
+  background: linear-gradient(135deg, #333, #000); /* Şık degrade bar */
+  border-radius: 5px; /* Barın köşelerini yuvarlat */
+  outline: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Varsayılan stili kaldır */
+  appearance: none;
+  width: 20px; /* Yuvarlak boyutu */
+  height: 20px;
+  background: linear-gradient(135deg, #444, #000); /* Yuvarlak degrade renk */
+  border: 2px solid #fff; /* Beyaz çerçeve ile öne çıkar */
+  border-radius: 50%; /* Tamamen yuvarlak */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge ekle */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #444, #000); /* Yuvarlak degrade renk */
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover,
+input[type="range"]::-moz-range-thumb:hover {
+  background: linear-gradient(135deg, #555, #222); /* Hover durumunda daha açık degrade */
+  transform: scale(1.1); /* Hover sırasında hafif büyütme efekti */
+}
+
+input[type="range"]:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3); /* Odak durumunda hafif ışık efekti */
+}
+
+
+/* Checkbox Box */
+.checkbox-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-bottom: 15px;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: #f9f9f9; /* Kutunun arka planı */
+  border-radius: 15px; /* Köşeleri yuvarlat */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge ekle */
+  height: 60px; /* Kutunun boyutu */
+  overflow: hidden;
+}
+
+.checkbox-box input {
+  opacity: 0; /* Checkbox görünmez */
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.checkbox-box label {
+  font-size: 1.2rem;
+  font-weight: 500; /* Daha belirgin yazı */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #f0f0f0, #ffffff); /* Hafif degrade arka plan */
+  color: #333; /* Metin rengini koyulaştır */
+}
+
+.checkbox-box:hover {
+  background: linear-gradient(135deg, #000, #444); /* Hover durumunda degrade */
+  color: #fff; /* Yazı rengini beyaza çevir */
+  transform: scale(1.05); /* Hafif büyütme efekti */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Gölgeyi yoğunlaştır */
+}
+
+.checkbox-box input:checked + label {
+  background: linear-gradient(135deg, #333, #000); /* Seçili durumda koyu degrade */
+  color: #fff; /* Yazı rengini beyaza çevir */
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.3); /* İç gölge efekti */
+}
+
+/* Butonlar */
+/* Butonlar */
+.button-container {
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  position: absolute;
+  bottom: 20px; /* Butonları sayfanın alt kısmına sabitle */
+  left: 20px; /* Sol kenardan 20px uzaklık */
+  right: 20px; /* Sağ kenardan 20px uzaklık */
+}
+
+
+/* Butonlar */
+button {
+  padding: 14px 20px;
+  border: none;
+  flex: 1;
+  font-size: 1.1rem; /* Buton yazı boyutunu büyüt */
+  background-color: #333; /* Buton arka planını koyulaştır */
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 7px; /* Daha zarif köşeler */
+  font-weight: 600; /* Buton yazısını belirgin yap */
+}
+
+button:hover {
+  opacity: 0.9;
+  background-color: #555; /* Hover durumunda daha açık renk */
+}
+
+/* Responsive Tasarım */
+@media (max-width: 600px) {
+  .box-container {
+    grid-template-columns: 1fr;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 1.6rem; /* Küçük ekranlarda başlık boyutunu küçült */
+  }
+
+  button {
+    font-size: 1rem; /* Küçük ekranlar için yazı boyutunu optimize et */
+  }
+  .box-container {
+    grid-template-columns: 1fr 1fr; /* 2 kutu üst üste olacak */
+  }
+
+  .box {
+    height: 150px; /* Mobilde kutular daha küçük olsun */
+    width: 100%; /* Kare olmasını sağlamak için genişlik %100 */
+    margin-bottom: 10px; /* Kutular arasına boşluk ekle */
+  }
+
+  .box label {
+    font-size: 1rem; /* Mobilde yazı boyutunu biraz küçült */
+  }
+}
+
+
+/* Timeline */
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.timeline-step {
+  width: 50px;
+  height: 30px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.timeline-step.completed {
+  background-color: #333;
+  color: white;
+}
+
+.timeline-step.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Connectors between steps */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #ddd;
+  z-index: -1;
+  transform: translateY(-50%);
+}
+
+/* Rest of your form styles */
+
+
