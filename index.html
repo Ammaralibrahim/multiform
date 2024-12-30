@@ -1,107 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi-Step Form</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="form-container">
-    <form id="multiStepForm">
-      <!-- Timeline Section -->
-      <!-- <div class="timeline">
-        <div class="timeline-step" id="timeline-step1">1</div>
-        <div class="timeline-step" id="timeline-step2">2</div>
-        <div class="timeline-step" id="timeline-step3">3</div>
-        <div class="timeline-step" id="timeline-step4">4</div>
-        <div class="timeline-step" id="timeline-step5">5</div>
-      </div> -->
-
-      <!-- Form Steps -->
-      <div class="form-step active" id="step1">
-        <h2>1- Choose a Service</h2>
-        <div class="box-container">
-          <div class="box">
-            <input type="radio" id="service1" name="service" value="1" onchange="nextStep(2)">
-            <label for="service1">Web Development</label>
-          </div>
-          <div class="box">
-            <input type="radio" id="service2" name="service" value="2" onchange="nextStep(2)">
-            <label for="service2">Mobile App Development</label>
-          </div>
-          <div class="box">
-            <input type="radio" id="service3" name="service" value="3" onchange="nextStep(2)">
-            <label for="service3">UI/UX Design</label>
-          </div>
-          <div class="box">
-            <input type="radio" id="service4" name="service" value="4" onchange="nextStep(2)">
-            <label for="service4">Digital Marketing</label>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="form-container">
+      <form id="multiStepForm">
+        <!-- Step 1 -->
+        <div class="form-step active" id="step1">
+          <h2>1- Enter Your Details</h2>
+          <div class="content-container">
+              <div class="input-container">
+                  <input type="text" id="name" name="name" class="input-field" placeholder="Enter your name" required>
+              </div>
+              <div class="input-container">
+                  <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email" required>
+              </div>
+              <div class="input-container">
+                  <input type="text" id="phone" name="phone" class="input-field" placeholder="Enter your phone number" required>
+              </div>
+              <div class="input-container">
+                  <input type="text" id="company" name="company" class="input-field" placeholder="Enter your company name (optional)">
+              </div>
+              <div class="button-container">
+                  <button type="button" class="next-btn" onclick="nextStep(2)">Next</button>
+              </div>
           </div>
         </div>
-      </div>
 
-      <!-- Step 2 -->
-      <div class="form-step" id="step2">
-        <h2>2- Set Your Budget</h2>
-        <label for="rangeInput">Budget (in $):</label>
-        <input type="range" id="rangeInput" name="budget" min="1" max="12" value="1" step="1">
-        <p>Selected Budget: <span id="rangeValue">1</span></p>
-        <div class="button-container">
-          <button type="button" class="prev-btn" onclick="prevStep(1)">Back</button>
-          <button type="button" class="next-btn" onclick="nextStep(3)">Next</button>
+        <!-- Step 2 -->
+        <div class="form-step" id="step2">
+          <h2>2- Choose a Service</h2>
+          <div class="content-container">
+            <div class="box-container">
+              <div class="box">
+                <input type="radio" id="service1" name="service" value="1" onchange="nextStep(3)">
+                <label for="service1">Web Development</label>
+              </div>
+              <div class="box">
+                <input type="radio" id="service2" name="service" value="2" onchange="nextStep(3)">
+                <label for="service2">Mobile App Development</label>
+              </div>
+              <div class="box">
+                <input type="radio" id="service3" name="service" value="3" onchange="nextStep(3)">
+                <label for="service3">UI/UX Design</label>
+              </div>
+              <div class="box">
+                <input type="radio" id="service4" name="service" value="4" onchange="nextStep(3)">
+                <label for="service4">Digital Marketing</label>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <!-- Step 3 -->
-      <div class="form-step" id="step3">
-        <h2>3- Provide Your Location</h2>
-        <label for="locationInput">Location:</label>
-        <input type="text" id="locationInput" name="location" placeholder="Enter city or address" required>
-        <div class="button-container">
-          <button type="button" class="prev-btn" onclick="prevStep(2)">Back</button>
-          <button type="button" class="next-btn" onclick="nextStep(4)">Next</button>
-        </div>
-      </div>
 
-      <!-- Step 4 -->
-      <div class="form-step" id="step4">
-        <h2>4- Select Additional Features</h2>
-        <div class="checkbox-box">
-          <input type="checkbox" id="feature1" name="feature" value="Feature 1">
-          <label for="feature1">SEO Optimization</label>
+        <!-- Step 3 -->
+        <div class="form-step" id="step3">
+          <h2>3- Set Your Budget</h2>
+          <div class="content-container">
+            <label for="rangeInput">Budget (in $):</label>
+            <input type="range" id="rangeInput" name="budget" min="1" max="12" value="1" step="1">
+            <h2>Selected Budget: <span id="rangeValue">1</span></h2>
+            <div class="button-container">
+              <button type="button" class="prev-btn" onclick="prevStep(2)">Back</button>
+              <button type="button" class="next-btn" onclick="nextStep(4)">Next</button>
+            </div>
+          </div>
         </div>
-        <div class="checkbox-box">
-          <input type="checkbox" id="feature2" name="feature" value="Feature 2">
-          <label for="feature2">E-Commerce Integration</label>
-        </div>
-        <div class="checkbox-box">
-          <input type="checkbox" id="feature3" name="feature" value="Feature 3">
-          <label for="feature3">24/7 Support</label>
-        </div>
-        <div class="checkbox-box">
-          <input type="checkbox" id="feature4" name="feature" value="Feature 4">
-          <label for="feature4">Custom Graphics</label>
-        </div>
-        <div class="button-container">
-          <button type="button" class="prev-btn" onclick="prevStep(3)">Back</button>
-          <button type="button" class="next-btn" onclick="nextStep(5)">Next</button>
-        </div>
-      </div>
 
-      <!-- Step 5 -->
-      <div class="form-step" id="step5">
-        <h1>Form Completed ✅</h1>
-        <h2>Thank you! Your booking is complete.</h2>
-        <p>We will contact you shortly to finalize the details.</p>
-        <div class="button-container">
-          <button type="button" class="prev-btn" onclick="prevStep(4)">Back</button>
-          <button type="submit" class="submit-btn">Finish</button>
+        <!-- Step 4 -->
+        <div class="form-step" id="step4">
+          <h2>4- Provide Your Location</h2>
+          <div class="content-container">
+            <div class="search">
+              <input type="text" class="search__input" placeholder="Type your text">
+            </div>
+            <div class="button-container">
+              <button type="button" class="prev-btn" onclick="prevStep(3)">Back</button>
+              <button type="button" class="next-btn" onclick="nextStep(5)">Next</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </form>
-  </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+        <!-- Step 5 -->
+        <div class="form-step" id="step5">
+          <h2>5- Select Additional Features</h2>
+          <div class="content-container">
+            <div class="checkbox-box">
+              <input type="checkbox" id="feature1" name="feature" value="Feature 1">
+              <label for="feature1">SEO Optimization</label>
+            </div>
+            <div class="checkbox-box">
+              <input type="checkbox" id="feature2" name="feature" value="Feature 2">
+              <label for="feature2">E-Commerce Integration</label>
+            </div>
+            <div class="checkbox-box">
+              <input type="checkbox" id="feature3" name="feature" value="Feature 3">
+              <label for="feature3">24/7 Support</label>
+            </div>
+            <div class="checkbox-box">
+              <input type="checkbox" id="feature4" name="feature" value="Feature 4">
+              <label for="feature4">Custom Graphics</label>
+            </div>
+            <div class="button-container">
+              <button type="button" class="prev-btn" onclick="prevStep(4)">Back</button>
+              <button type="button" class="next-btn" onclick="nextStep(6)">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6 (New Step with Dropdown) -->
+        <div class="form-step active" id="step6">
+          <h2>6- Search for a Service</h2>
+          <div class="content-container">
+            <div id="container">
+              <input id="search" autocomplete="off" placeholder="Search..." class="search-input">
+              <div id="chev" class="chevron"><i class="fas fa-chevron-down"></i></div>
+              <div id="results" class="results-container"></div>
+            </div>
+            <div class="button-container">
+              <button type="button" class="prev-btn" onclick="prevStep(5)">Back</button>
+              <button type="button" class="next-btn" onclick="nextStep(7)">Next</button>
+            </div>
+          </div>
+        </div>
+        
+        
+
+        <!-- Step 7 -->
+        <div class="form-step" id="step7">
+          <h1>Form Completed ✅</h1>
+          <div class="content-container">
+            <h2>Thank you! Your booking is complete.</h2>
+            <p>We will contact you shortly to finalize the details.</p>
+            <div class="button-container">
+              <button type="button" class="prev-btn" onclick="prevStep(6)">Back</button>
+              <button type="submit" class="submit-btn">Finish</button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+  </html>

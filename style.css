@@ -3,7 +3,7 @@ body {
   font-family: 'Poppins', Arial, sans-serif; /* Modern ve zarif bir yazı tipi */
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #000, #444); /* Modern hover efekti */
+  background: rgb(244, 217, 176); /* Modern hover efekti */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,13 +14,10 @@ body {
 
 /* Form Konteyneri */
 .form-container {
-  background-color: white;
   padding: 30px;
   margin: 10px 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Daha belirgin bir gölge */
-  width: 700px;
-  height: 600px;
-  max-width: 500px;
+  width: 900px;
+  height: 700px;
   box-sizing: border-box;
   border-radius: 10px; /* Köşeleri hafif yuvarlat */
   display: flex;
@@ -29,12 +26,26 @@ body {
   position: relative; /* Butonların form dışına çıkmaması için */
 }
 
-/* Adım Başlıkları */
 h2 {
-  font-size: 1.8rem; /* Biraz daha büyük başlık */
-  margin-bottom: 20px;
-  color: #222; /* Daha koyu başlık rengi */
-  font-weight: 600; /* Başlığı daha belirgin yap */
+  font-size: 4em;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+label {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-step .box-container label {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.form-step .checkbox-box label {
+  font-size: 1.2em;
 }
 
 /* Form Adımları */
@@ -46,12 +57,22 @@ h2 {
   display: block;
 }
 
+.content-container {
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+  text-align: center;
+}
+
+
 /* Kutucuklar */
 .box-container {
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2 kutu üst üste gelecek */
   gap: 20px;
 }
+
 
 .box {
   height: 200px;
@@ -111,8 +132,6 @@ h2 {
 
 
 /* Yazı inputları */
-input[type="text"],
-input[type="email"],
 input[type="password"] {
   width: 93%;
   padding: 15px;
@@ -125,16 +144,12 @@ input[type="password"] {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
 input[type="password"]:focus {
   border-color: #555; /* Focus durumunda daha koyu bir çerçeve */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Hafif bir odak gölgesi */
   background-color: #fff;
 }
 
-input[type="text"]::placeholder,
-input[type="email"]::placeholder,
 input[type="password"]::placeholder {
   color: #888; /* Placeholder rengini yumuşat */
   font-size: 0.95rem; /* Placeholder boyutunu optimize et */
@@ -357,3 +372,204 @@ button:hover {
 /* Rest of your form styles */
 
 
+
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.search__input {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: #f4f2f2;
+  border: none;
+  color: #646464;
+  padding: 2rem ;
+  border-radius: 30px;
+  width: 90%;
+  transition: all ease-in-out .5s;
+}
+
+.search__input:hover, .search__input:focus {
+  box-shadow: 0 0 1em #00000013;
+}
+
+.search__input:focus {
+  outline: none;
+  background-color: #f0eeee;
+}
+
+.search__input::-webkit-input-placeholder {
+  font-weight: 600;
+  color: #b4b2b2;
+}
+
+.search__input:focus + .search__button {
+  background-color: #f0eeee;
+}
+
+.search__button {
+  border: none;
+  background-color: #f4f2f2;
+  margin-top: .1em;
+}
+
+.search__button:hover {
+  cursor: pointer;
+}
+
+.search__icon {
+  height: 1.3em;
+  width: 1.3em;
+  fill: #b4b4b4;
+}
+
+
+/* Container for each input field */
+.input-container {
+  margin-bottom: 20px;
+}
+
+/* Label style */
+.input-container label {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Input field styling */
+.input-field {
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: #f4f2f2;
+  border: none;
+  color: #646464;
+  padding: 1rem;
+  border-radius: 30px;
+  width: 90%;
+  transition: all ease-in-out .3s;
+  box-sizing: border-box;
+}
+
+/* Input field hover and focus effects */
+.input-field:hover,
+.input-field:focus {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  background-color: #f0eeee;
+}
+
+/* Input focus effect */
+.input-field:focus {
+  outline: none;
+}
+
+/* Placeholder text style */
+.input-field::-webkit-input-placeholder {
+  font-weight: 600;
+  color: #b4b2b2;
+}
+
+
+/* Genel Stiller */
+#container {
+  position: relative;
+  width: 90%;
+  margin: 10px auto;
+  
+}
+
+.search-input {
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+  font-size: 16px;
+  border: 0px solid #ccc;
+  border-radius: 30px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+
+
+.search-input::placeholder {
+  color: #aaa;
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Styling for the scrollbar of the results container */
+.results-container {
+  position: absolute;
+  top: 60px;
+  left: 26px;
+  width: 92.7%;
+  max-height: 200px;
+  padding: 0;
+  margin-top: 0px;
+  overflow-y: auto;
+  display: block;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+/* Custom scrollbar styling for webkit browsers */
+.results-container::-webkit-scrollbar {
+  width: 0px; /* Width of the scrollbar */
+}
+
+.results-container::-webkit-scrollbar-thumb {
+  background-color: #ebebeb; /* Gray color for the scrollbar thumb */
+  border-radius: 3px; /* Round corners */
+}
+
+.results-container::-webkit-scrollbar-track {
+  background-color: #f9f9f9; /* Light background for the track */
+}
+
+
+.results-container.show {
+  opacity: 1;
+}
+
+.results-container.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.item {
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.item:hover {
+background-color: #e4e4e4;}
+
+.item:active {
+  background-color: #2a89f5;
+}
+
+/* Küçük ekranlarda uyumluluk */
+@media (max-width: 600px) {
+  #container {
+    max-width: 100%;
+  }
+}
