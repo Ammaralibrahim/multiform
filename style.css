@@ -345,7 +345,9 @@ button:hover {
   .form-container {
     height: 600px;
   }
-
+  .form-step{
+    height: 600px;
+  }
   .box-container {
     grid-template-columns: 1fr;
   }
@@ -742,9 +744,7 @@ button:hover {
 }
 
 @media (max-width: 1024px) {
-  #phone {
-    width: 100%; 
-  }
+
   
 }
 
@@ -756,7 +756,7 @@ button:hover {
 
 @media (max-width: 576px) {
   #phone {
-    width: 164%; 
+    /* width: 146%;  */
   }
 }
 
