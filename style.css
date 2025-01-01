@@ -55,53 +55,34 @@ label {
 .form-step {
   display: none; /* Hide inactive steps */
   opacity: 0;
-  transition: opacity 0.3s ease; /* Add smooth opacity transition */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for opacity and transform */
   position: absolute;
   width: 100%;
   height: 700px;
   top: 0;
   left: 0;
   z-index: -1; /* Initially hide it behind the others */
+  transform: translateX(-90%); /* Start from off-screen to the left */
 }
 
 .form-step.active {
   display: block; /* Show the active step */
   opacity: 1; /* Make the active step visible */
   z-index: 1; /* Bring the active step on top */
+  transform: translateX(0); /* Move to its natural position */
 }
 
-.form-step.fade-out {
+.form-step.slide-out {
+  transform: translateX(100%); /* Slide out to the right */
   opacity: 0;
 }
 
-.form-step.fade-in {
+.form-step.slide-in {
+  transform: translateX(0); /* Slide in from the left */
   opacity: 1;
 }
 
-.form-container {
-  position: relative;
 
-}
-
-.button-container {
-  position: relative;
-  z-index: 2; /* Ensure buttons are on top */
-}
-
-.form-step.transitioning {
-  animation: slide-in 0.5s ease-out;
-}
-
-@keyframes slide-in {
-  0% {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 
 
 .content-container {
