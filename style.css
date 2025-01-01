@@ -750,13 +750,13 @@ button:hover {
 
 @media (max-width: 768px) {
   #phone {
-    width: 163%; 
+    width: 200%; 
   }
 }
 
 @media (max-width: 576px) {
   #phone {
-    /* width: 146%;  */
+    width: 410px; 
   }
 }
 
