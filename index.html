@@ -4,31 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Multi-Step Form</title>
+  
+  <!-- External stylesheets for form and phone input -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/css/intlTelInput.css">
+  
+  <!-- External JS for phone input library -->
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/intlTelInput.js"></script>
 </head>
 <body>
+  <!-- Form Container -->
   <div class="form-container">
     <form id="multiStepForm">
-      <!-- Step 1 -->
-      <div class="form-step active" id="step1">
-        <h2>1- Enter Your Details</h2>
+      
+      <!-- Step 1: Search for a Service -->
+      <div class="form-step" id="step1">
+        <h2>1- Search for a Service</h2>
         <div class="content-container">
-          <div class="input-container">
-            <input type="text" id="name" name="name" class="input-field" placeholder="Enter your name" required>
-          </div>
-          <div class="input-container">
-            <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email" required>
-          </div>
-          <!-- Step 1: Phone Input with Country Code -->
-          <div class="input-container">
-            <div class="phone-input-wrapper">
-              <input type="text" id="phone" name="phone" class="input-field" placeholder="Enter your phone number" required>
-            </div>
-          </div>
-          <div class="input-container">
-            <input type="text" id="company" name="company" class="input-field" placeholder="Enter your company name (optional)">
+          <div id="container">
+            <input id="search" autocomplete="off" placeholder="Search..." class="search-input" required>
+            <div id="chev" class="chevron"><i class="fas fa-chevron-down"></i></div>
+            <div id="results" class="results-container"></div>
           </div>
           <div class="button-container">
             <button type="button" class="next-btn" onclick="nextStep(2)">Next</button>
@@ -36,7 +32,7 @@
         </div>
       </div>
 
-      <!-- Step 2 -->
+      <!-- Step 2: Choose a Service -->
       <div class="form-step" id="step2">
         <h2>2- Choose a Service</h2>
         <div class="content-container">
@@ -65,7 +61,7 @@
         </div>
       </div>
 
-      <!-- Step 3 -->
+      <!-- Step 3: Set Your Budget -->
       <div class="form-step" id="step3">
         <h2>3- Set Your Budget</h2>
         <div class="content-container">
@@ -79,12 +75,12 @@
         </div>
       </div>
 
-      <!-- Step 4 -->
+      <!-- Step 4: Provide Your Location -->
       <div class="form-step" id="step4">
         <h2>4- Provide Your Location</h2>
         <div class="content-container">
           <div class="search">
-            <input type="text" class="search__input" placeholder="Type your text" required>
+            <input type="text" class="search__input" placeholder="Type your location" required>
           </div>
           <div class="button-container">
             <button type="button" class="prev-btn" onclick="prevStep(3)">Back</button>
@@ -93,7 +89,7 @@
         </div>
       </div>
 
-      <!-- Step 5 -->
+      <!-- Step 5: Select Additional Features -->
       <div class="form-step" id="step5">
         <h2>5- Select Additional Features</h2>
         <div class="content-container">
@@ -120,14 +116,23 @@
         </div>
       </div>
 
-      <!-- Step 6 (New Step with Dropdown) -->
+      <!-- Step 6: Enter Your Details -->
       <div class="form-step" id="step6">
-        <h2>6- Search for a Service</h2>
+        <h2>6- Enter Your Details</h2>
         <div class="content-container">
-          <div id="container">
-            <input id="search" autocomplete="off" placeholder="Search..." class="search-input" required>
-            <div id="chev" class="chevron"><i class="fas fa-chevron-down"></i></div>
-            <div id="results" class="results-container"></div>
+          <div class="input-container">
+            <input type="text" id="name" name="name" class="input-field" placeholder="Enter your name" required>
+          </div>
+          <div class="input-container">
+            <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email" required>
+          </div>
+          <div class="input-container">
+            <div class="phone-input-wrapper">
+              <input type="text" id="phone" name="phone" class="input-field" placeholder="Enter your phone number" required>
+            </div>
+          </div>
+          <div class="input-container">
+            <input type="text" id="company" name="company" class="input-field" placeholder="Enter your company name (optional)">
           </div>
           <div class="button-container">
             <button type="button" class="prev-btn" onclick="prevStep(5)">Back</button>
@@ -136,7 +141,7 @@
         </div>
       </div>
 
-      <!-- Step 7 -->
+      <!-- Step 7: Form Completed -->
       <div class="form-step" id="step7">
         <h1>Form Completed ✅</h1>
         <div class="content-container">
@@ -149,7 +154,7 @@
         </div>
       </div>
 
-      <!-- Modal -->
+      <!-- Modal for successful submission -->
       <div id="modal" class="modal">
         <div class="modal-content">
           <div>
@@ -163,6 +168,7 @@
     </form>
   </div>
 
+  <!-- External JS script for form interactions -->
   <script src="script.js"></script>
 </body>
 </html>
