@@ -1,6 +1,6 @@
 /* Genel Sayfa Stil */
 body {
-  font-family: 'Poppins', Arial, sans-serif; /* Modern ve zarif bir yazı tipi */
+  font-family: "Poppins", Arial, sans-serif; /* Modern ve zarif bir yazı tipi */
   margin: 0;
   padding: 0;
   background: rgb(244, 217, 176); /* Modern hover efekti */
@@ -17,7 +17,7 @@ body {
   padding: 30px;
   margin: 10px 10px;
   width: 900px;
-  height: 700px;
+  height: 730px;
   box-sizing: border-box;
   border-radius: 10px; /* Köşeleri hafif yuvarlat */
   display: flex;
@@ -65,14 +65,12 @@ label {
   text-align: center;
 }
 
-
 /* Kutucuklar */
 .box-container {
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2 kutu üst üste gelecek */
   gap: 20px;
 }
-
 
 .box {
   height: 200px;
@@ -111,7 +109,11 @@ label {
   height: 100%;
   text-align: center;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #f0f0f0, #ffffff); /* Hafif degrade arka plan */
+  background: linear-gradient(
+    135deg,
+    #f0f0f0,
+    #ffffff
+  ); /* Hafif degrade arka plan */
 }
 
 /* Hover ve Seçili Durum */
@@ -123,13 +125,14 @@ label {
 }
 
 .box input:checked + label {
-  background: linear-gradient(135deg, #333, #000); /* Seçili durumda koyu degrade */
+  background: linear-gradient(
+    135deg,
+    #333,
+    #000
+  ); /* Seçili durumda koyu degrade */
   color: #fff; /* Yazı rengini beyaza çevir */
   box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.3); /* İç gölge ekle */
 }
-
-
-
 
 /* Yazı inputları */
 input[type="password"] {
@@ -154,7 +157,6 @@ input[type="password"]::placeholder {
   color: #888; /* Placeholder rengini yumuşat */
   font-size: 0.95rem; /* Placeholder boyutunu optimize et */
 }
-
 
 /* Range Input */
 input[type="range"] {
@@ -195,7 +197,11 @@ input[type="range"]::-moz-range-thumb {
 
 input[type="range"]::-webkit-slider-thumb:hover,
 input[type="range"]::-moz-range-thumb:hover {
-  background: linear-gradient(135deg, #555, #222); /* Hover durumunda daha açık degrade */
+  background: linear-gradient(
+    135deg,
+    #555,
+    #222
+  ); /* Hover durumunda daha açık degrade */
   transform: scale(1.1); /* Hover sırasında hafif büyütme efekti */
 }
 
@@ -203,7 +209,6 @@ input[type="range"]:focus {
   outline: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.3); /* Odak durumunda hafif ışık efekti */
 }
-
 
 /* Checkbox Box */
 .checkbox-box {
@@ -241,7 +246,11 @@ input[type="range"]:focus {
   width: 100%;
   height: 100%;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #f0f0f0, #ffffff); /* Hafif degrade arka plan */
+  background: linear-gradient(
+    135deg,
+    #f0f0f0,
+    #ffffff
+  ); /* Hafif degrade arka plan */
   color: #333; /* Metin rengini koyulaştır */
 }
 
@@ -253,7 +262,11 @@ input[type="range"]:focus {
 }
 
 .checkbox-box input:checked + label {
-  background: linear-gradient(135deg, #333, #000); /* Seçili durumda koyu degrade */
+  background: linear-gradient(
+    135deg,
+    #333,
+    #000
+  ); /* Seçili durumda koyu degrade */
   color: #fff; /* Yazı rengini beyaza çevir */
   box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.3); /* İç gölge efekti */
 }
@@ -270,7 +283,6 @@ input[type="range"]:focus {
   left: 20px; /* Sol kenardan 20px uzaklık */
   right: 20px; /* Sağ kenardan 20px uzaklık */
 }
-
 
 /* Butonlar */
 button {
@@ -324,7 +336,6 @@ button:hover {
   }
 }
 
-
 /* Timeline */
 .timeline {
   display: flex;
@@ -352,13 +363,13 @@ button:hover {
 }
 
 .timeline-step.active {
-  background-color: #4CAF50;
+  background: linear-gradient(135deg, #444, #000); /* Yuvarlak degrade renk */
   color: white;
 }
 
 /* Connectors between steps */
 .timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
@@ -370,9 +381,6 @@ button:hover {
 }
 
 /* Rest of your form styles */
-
-
-
 
 .search {
   display: flex;
@@ -387,13 +395,14 @@ button:hover {
   background-color: #f4f2f2;
   border: none;
   color: #646464;
-  padding: 2rem ;
+  padding: 2rem;
   border-radius: 30px;
   width: 90%;
-  transition: all ease-in-out .5s;
+  transition: all ease-in-out 0.5s;
 }
 
-.search__input:hover, .search__input:focus {
+.search__input:hover,
+.search__input:focus {
   box-shadow: 0 0 1em #00000013;
 }
 
@@ -414,7 +423,7 @@ button:hover {
 .search__button {
   border: none;
   background-color: #f4f2f2;
-  margin-top: .1em;
+  margin-top: 0.1em;
 }
 
 .search__button:hover {
@@ -427,7 +436,6 @@ button:hover {
   fill: #b4b4b4;
 }
 
-
 /* Container for each input field */
 .input-container {
   margin-bottom: 20px;
@@ -435,7 +443,7 @@ button:hover {
 
 /* Label style */
 .input-container label {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 1rem;
   color: #555;
   margin-bottom: 5px;
@@ -452,7 +460,7 @@ button:hover {
   padding: 1rem;
   border-radius: 30px;
   width: 90%;
-  transition: all ease-in-out .3s;
+  transition: all ease-in-out 0.3s;
   box-sizing: border-box;
 }
 
@@ -474,13 +482,11 @@ button:hover {
   color: #b4b2b2;
 }
 
-
 /* Genel Stiller */
 #container {
   position: relative;
   width: 90%;
   margin: 10px auto;
-  
 }
 
 .search-input {
@@ -495,8 +501,6 @@ button:hover {
   box-sizing: border-box;
   background-color: #f9f9f9;
 }
-
-
 
 .search-input::placeholder {
   color: #aaa;
@@ -543,7 +547,6 @@ button:hover {
   background-color: #f9f9f9; /* Light background for the track */
 }
 
-
 .results-container.show {
   opacity: 1;
 }
@@ -561,7 +564,8 @@ button:hover {
 }
 
 .item:hover {
-background-color: #e4e4e4;}
+  background-color: #e4e4e4;
+}
 
 .item:active {
   background-color: #2a89f5;
@@ -572,4 +576,62 @@ background-color: #e4e4e4;}
   #container {
     max-width: 100%;
   }
+}
+
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+#closeModalBtn {
+  background: linear-gradient(135deg, #444, #000); /* Yuvarlak degrade renk */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#closeModalBtn:hover {
+  background-color: #45a049;
+}
+
+
+.phone-input-wrapper {
+  display: flex;
+}
+
+.country-code-select {
+  padding: 10px;
+  width: 100%;
+}
+
+.input-field {
+  padding: 20px;
+  width: 100%;
+}
+
+#phone{
+  width: 840px;
+}
+
+.iti--separate-dial-code .iti__selected-flag{
+  background-color: transparent !important;
 }
