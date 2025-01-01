@@ -1,17 +1,13 @@
 // Function to show the current step
 function showStep(step) {
-  // Hide all steps
   document.querySelectorAll('.form-step').forEach(stepElement => {
     stepElement.classList.remove('active');
   });
-
-  // Show the active step
   document.getElementById(`step${step}`).classList.add('active');
 }
 
 // Move to the next step
 function nextStep(step) {
-  // Validate the current step
   if (validateStep(currentStep)) {
     currentStep = step;
     showStep(step);
@@ -32,9 +28,7 @@ function prevStep(step) {
 // Validate the current step
 function validateStep(step) {
   const currentStepElement = document.getElementById(`step${step}`);
-  const inputs = currentStepElement.querySelectorAll('input[required], select[required], textarea[required]');
-
-  // Check if all required fields are filled
+  const inputs = currentStepElement.querySelectorAll('input[required]');
   for (let input of inputs) {
     if (!input.value.trim()) {
       alert('Please fill out all required fields.');
@@ -44,72 +38,104 @@ function validateStep(step) {
   return true;
 }
 
-// Show modal after form submission
-function showModal() {
-  const modal = document.getElementById('modal');
-  modal.style.display = 'block'; // Show modal when form is complete
-}
+// Update the range input value
+const rangeInput = document.getElementById('rangeInput');
+const rangeValue = document.getElementById('rangeValue');
 
-// Close modal and reset the form after modal close
-document.getElementById('closeModalBtn').addEventListener('click', function () {
-  const modal = document.getElementById('modal');
-  modal.style.display = 'none'; // Hide modal
-
-  resetForm(); // Reset form after modal close
-  showStep(1); // Go back to Step 1
+rangeInput.addEventListener('input', function () {
+  rangeValue.textContent = rangeInput.value; // Update the range value
 });
 
-// Reset the form and move to Step 1
+// Show the first step on page load
+let currentStep = 1; // Start from Step 1
+showStep(currentStep);
+
+// Search functionality for dropdown
+const services = [
+  "Web Development",
+  "App Development",
+  "Graphic Design",
+  "SEO Optimization",
+  "Digital Marketing",
+  "Content Writing",
+  "Data Analysis"
+];
+
+const searchInput = document.getElementById('search');
+const resultsContainer = document.getElementById('results');
+const chev = document.getElementById('chev');
+
+function searchService() {
+  const query = searchInput.value.toLowerCase();
+  resultsContainer.innerHTML = "";
+
+  const filteredServices = services.filter(service => service.toLowerCase().includes(query));
+
+  if (filteredServices.length > 0) {
+    filteredServices.forEach(service => {
+      const item = document.createElement('div');
+      item.classList.add('item');
+      item.textContent = service;
+      item.onclick = () => selectService(service);
+      resultsContainer.appendChild(item);
+    });
+  } else {
+    const noResultItem = document.createElement('div');
+    noResultItem.classList.add('item');
+    noResultItem.textContent = "No results found";
+    resultsContainer.appendChild(noResultItem);
+  }
+}
+
+function selectService(service) {
+  searchInput.value = service;
+  resultsContainer.innerHTML = "";
+}
+
+searchInput.addEventListener('input', searchService);
+
+chev.addEventListener('click', () => {
+  resultsContainer.style.display = resultsContainer.style.display === "block" ? "none" : "block";
+});
+
+// Show the modal
+function showModal() {
+  const modal = document.getElementById('modal');
+  modal.style.display = 'block';
+}
+
+// Close the modal and reset to step 1
+document.getElementById('closeModalBtn').addEventListener('click', function () {
+  const modal = document.getElementById('modal');
+  modal.style.display = 'none';
+  resetForm(); // Reset form when modal closes
+});
+
+// Form submission handler
+document.getElementById('multiStepForm').addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent default form submission
+  resetForm(); // Reset the form
+  showModal(); // Show modal
+});
+
+// Function to reset the form
 function resetForm() {
   const form = document.getElementById('multiStepForm');
   form.reset(); // Reset all form fields
-
-  // Reset all form steps' active classes
-  document.querySelectorAll('.form-step').forEach(stepElement => {
-    stepElement.classList.remove('active');
-  });
-
-  currentStep = 1; // Reset to Step 1
-  showStep(currentStep); // Show Step 1 after reset
+  currentStep = 1; // Reset to step 1
+  showStep(currentStep); // Show step 1
 }
 
-// Initialize the first step and form validation
-let currentStep = 1;
-showStep(currentStep); // Initial setup to show Step 1
 
-// Initialize phone number input with country code using intl-tel-input
-document.addEventListener('DOMContentLoaded', function() {
-  const phoneInput = document.getElementById('phone');
-  window.intlTelInput(phoneInput, {
-    initialCountry: 'us',
-    preferredCountries: ['us', 'gb', 'ca'],
-    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js', // Required for validation
+window.addEventListener('DOMContentLoaded', () => {
+  const phoneInput = document.querySelector("#phone");
+  const iti = window.intlTelInput(phoneInput, {
+    initialCountry: "us", // default country
+    separateDialCode: true,
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js" // for formatting
   });
-});
 
-// Update the selected budget value based on the slider
-document.getElementById('rangeInput').addEventListener('input', function() {
-  document.getElementById('rangeValue').textContent = this.value;
-});
-
-// Dropdown search (for Step 6)
-document.getElementById('search').addEventListener('input', function() {
-  const query = this.value.toLowerCase();
-  const resultsContainer = document.getElementById('results');
-  resultsContainer.innerHTML = ''; // Clear previous results
-
-  const services = ['Web Development', 'Mobile App Development', 'UI/UX Design', 'Digital Marketing'];
-  const filteredServices = services.filter(service => service.toLowerCase().includes(query));
-
-  filteredServices.forEach(service => {
-    const div = document.createElement('div');
-    div.textContent = service;
-    resultsContainer.appendChild(div);
-  });
-});
-
-// Toggle dropdown visibility
-document.getElementById('chev').addEventListener('click', function() {
-  const resultsContainer = document.getElementById('results');
-  resultsContainer.style.display = resultsContainer.style.display === 'none' || resultsContainer.style.display === '' ? 'block' : 'none';
+  // To get the country code and phone number
+  const countryCode = iti.getSelectedCountryData().dialCode;
+  const phoneNumber = iti.getNumber();
 });

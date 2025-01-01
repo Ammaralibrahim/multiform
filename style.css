@@ -659,9 +659,29 @@ button:hover {
   width: 100%;
 }
 
-#phone{
-  width: 840px;
+#phone {
+  width: 840px; /* Varsayılan genişlik */
+  margin: 0 auto; /* Ortalamak için */
 }
+
+@media (max-width: 1024px) {
+  #phone {
+    width: 100%; /* Daha küçük genişlik */
+  }
+}
+
+@media (max-width: 768px) {
+  #phone {
+    width: 200%; /* Mobil cihazlar için tam genişlik */
+  }
+}
+
+@media (max-width: 576px) {
+  #phone {
+    width: 350px; /* Küçük mobil cihazlar için tam genişlik */
+  }
+}
+
 
 .iti--separate-dial-code .iti__selected-flag{
   background-color: transparent !important;
