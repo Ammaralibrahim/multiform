@@ -1,68 +1,79 @@
-// Function to show the current step
+// Function to show the current step with transition effect
 function showStep(step) {
-  // Hide all form steps by removing the 'active' class
-  document.querySelectorAll('.form-step').forEach(stepElement => {
-    stepElement.classList.remove('active');
-  });
+  const currentStepElement = document.getElementById(`step${currentStep}`);
+  const nextStepElement = document.getElementById(`step${step}`);
+
+  // Apply blur effect to the current step
+  currentStepElement.classList.add('blur');
+
+  // Apply sliding out effect to the current step
+  currentStepElement.classList.add('slide-out');
+
+  // Initially hide the next step, so it’s not visible until transition starts
+  nextStepElement.style.display = 'block';
+  nextStepElement.classList.remove('slide-in');
   
-  // Show the current step by adding the 'active' class
-  document.getElementById(`step${step}`).classList.add('active');
+  // Use a small timeout to allow the previous step to slide out before the next step slides in
+  setTimeout(() => {
+    // Clear blur and sliding effect after the current step has left
+    currentStepElement.classList.remove('active', 'blur', 'slide-out');
+    
+    // Add slide-in effect to the next step
+    nextStepElement.classList.add('active', 'slide-in');
+    
+    // After the transition is complete, remove the sliding-in effect
+    setTimeout(() => {
+      nextStepElement.classList.remove('slide-in');
+    }, 500); // match the transition duration in CSS
+  }, 500); // match the transition duration in CSS
+
+  // Update the current step variable
+  currentStep = step;
 }
 
-// Move to the next step in the form
+// Move to the next step
 function nextStep(step) {
-  // Validate the current step before moving to the next
   if (validateStep(currentStep)) {
-    currentStep = step;
     showStep(step);
 
-    // If the last step (Step 7) is reached, show the modal
+    // If the last step is reached (Step 7), show the modal
     if (step === 7) {
-      showModal(); // Show modal when the form is completed
+      showModal(); // Show modal on step 7
     }
   }
 }
 
-// Move to the previous step in the form
+// Move to the previous step
 function prevStep(step) {
-  currentStep = step;
   showStep(step);
 }
 
-// Validate the required fields in the current step
+// Validate the current step
 function validateStep(step) {
-  // Get the current step element
   const currentStepElement = document.getElementById(`step${step}`);
-  
-  // Find all input elements marked as 'required' in the current step
   const inputs = currentStepElement.querySelectorAll('input[required]');
-  
-  // Check if all required fields are filled out
   for (let input of inputs) {
     if (!input.value.trim()) {
-      alert('Please fill out all required fields.'); // Alert if any required field is empty
+      alert('Please fill out all required fields.');
       return false;
     }
   }
-  
-  // Return true if all required fields are filled
   return true;
 }
 
-// Update the range input value (for budget)
+// Update the range input value
 const rangeInput = document.getElementById('rangeInput');
 const rangeValue = document.getElementById('rangeValue');
 
-// Listen for input changes and update the displayed value
 rangeInput.addEventListener('input', function () {
-  rangeValue.textContent = rangeInput.value; // Update the displayed range value dynamically
+  rangeValue.textContent = rangeInput.value; // Update the range value
 });
 
-// Show the first step when the page loads
+// Show the first step on page load
 let currentStep = 1; // Start from Step 1
 showStep(currentStep);
 
-// Search functionality for the service dropdown
+// Search functionality for dropdown
 const services = [
   "Web Development",
   "App Development",
@@ -77,27 +88,21 @@ const searchInput = document.getElementById('search');
 const resultsContainer = document.getElementById('results');
 const chev = document.getElementById('chev');
 
-// Function to perform the search on the input field
 function searchService() {
-  const query = searchInput.value.toLowerCase(); // Get the user's query in lowercase
-  resultsContainer.innerHTML = ""; // Clear the previous results
+  const query = searchInput.value.toLowerCase();
+  resultsContainer.innerHTML = "";
 
-  // Filter the services array based on the query
   const filteredServices = services.filter(service => service.toLowerCase().includes(query));
 
-  // If matching services are found, display them
   if (filteredServices.length > 0) {
     filteredServices.forEach(service => {
       const item = document.createElement('div');
       item.classList.add('item');
       item.textContent = service;
-      
-      // When a service is clicked, select it
       item.onclick = () => selectService(service);
       resultsContainer.appendChild(item);
     });
   } else {
-    // If no services match, show a "No results" message
     const noResultItem = document.createElement('div');
     noResultItem.classList.add('item');
     noResultItem.textContent = "No results found";
@@ -105,60 +110,54 @@ function searchService() {
   }
 }
 
-// Function to select a service from the list
 function selectService(service) {
-  searchInput.value = service; // Set the input field to the selected service
-  resultsContainer.innerHTML = ""; // Clear the results container
+  searchInput.value = service;
+  resultsContainer.innerHTML = "";
 }
 
-// Add an event listener for the search input to trigger search
 searchInput.addEventListener('input', searchService);
 
-// Toggle the visibility of the search results when the chevron is clicked
 chev.addEventListener('click', () => {
   resultsContainer.style.display = resultsContainer.style.display === "block" ? "none" : "block";
 });
 
-// Show the modal when the form is completed
+// Show the modal
 function showModal() {
   const modal = document.getElementById('modal');
-  modal.style.display = 'block'; // Display the modal
+  modal.style.display = 'block';
 }
 
-// Close the modal and reset the form when the close button is clicked
+// Close the modal and reset to step 1
 document.getElementById('closeModalBtn').addEventListener('click', function () {
   const modal = document.getElementById('modal');
-  modal.style.display = 'none'; // Hide the modal
-  resetForm(); // Reset the form fields and step to 1
+  modal.style.display = 'none';
+  resetForm(); // Reset form when modal closes
 });
 
-// Handle form submission
+// Form submission handler
 document.getElementById('multiStepForm').addEventListener('submit', function (event) {
-  event.preventDefault(); // Prevent the form from being submitted
+  event.preventDefault(); // Prevent default form submission
   resetForm(); // Reset the form
-  showModal(); // Show the completion modal
+  showModal(); // Show modal
 });
 
-// Function to reset the form to its initial state
+// Function to reset the form
 function resetForm() {
   const form = document.getElementById('multiStepForm');
-  form.reset(); // Reset all form fields to their initial values
-  currentStep = 1; // Reset the step to 1
-  showStep(currentStep); // Show the first step
+  form.reset(); // Reset all form fields
+  currentStep = 1; // Reset to step 1
+  showStep(currentStep); // Show step 1
 }
 
-// Initialize international phone number input with country flag and dial code
 window.addEventListener('DOMContentLoaded', () => {
   const phoneInput = document.querySelector("#phone");
-  
-  // Initialize the international phone input using the intl-tel-input library
   const iti = window.intlTelInput(phoneInput, {
-    initialCountry: "us", // Set the default country to the United States
-    separateDialCode: true, // Show the dial code separately
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js" // Script to handle phone number formatting
+    initialCountry: "us", // default country
+    separateDialCode: true,
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js" // for formatting
   });
 
-  // Get the country code and phone number
-  const countryCode = iti.getSelectedCountryData().dialCode; // Get the dial code of the selected country
-  const phoneNumber = iti.getNumber(); // Get the phone number in international format
+  // To get the country code and phone number
+  const countryCode = iti.getSelectedCountryData().dialCode;
+  const phoneNumber = iti.getNumber();
 });
