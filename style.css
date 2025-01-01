@@ -305,6 +305,9 @@ button:hover {
 
 /* Responsive Tasarım */
 @media (max-width: 600px) {
+  .form-container{
+    height: 600px;
+  }
   .box-container {
     grid-template-columns: 1fr;
   }
