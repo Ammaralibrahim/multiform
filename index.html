@@ -5,27 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Multi-Step Form</title>
   
-  <!-- External stylesheets for form and phone input -->
+  <!-- Linking external CSS stylesheets -->
   <link rel="stylesheet" href="style.css">
+  
+  <!-- Including the international telephone input library's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/css/intlTelInput.css">
   
-  <!-- External JS for phone input library -->
+  <!-- Including the international telephone input library's JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/intlTelInput.js"></script>
 </head>
 <body>
-  <!-- Form Container -->
+  <!-- Main container for the multi-step form -->
   <div class="form-container">
+    <!-- Multi-step form -->
     <form id="multiStepForm">
       
       <!-- Step 1: Search for a Service -->
       <div class="form-step" id="step1">
         <h2>1- Search for a Service</h2>
         <div class="content-container">
+          <!-- Search input and dropdown container -->
           <div id="container">
+            <!-- Input for searching services -->
             <input id="search" autocomplete="off" placeholder="Search..." class="search-input" required>
+            <!-- Chevron icon to indicate dropdown -->
             <div id="chev" class="chevron"><i class="fas fa-chevron-down"></i></div>
+            <!-- Container for displaying search results -->
             <div id="results" class="results-container"></div>
           </div>
+          <!-- Navigation buttons for step -->
           <div class="button-container">
             <button type="button" class="next-btn" onclick="nextStep(2)">Next</button>
           </div>
@@ -36,6 +44,7 @@
       <div class="form-step" id="step2">
         <h2>2- Choose a Service</h2>
         <div class="content-container">
+          <!-- Radio button group for selecting a service -->
           <div class="box-container">
             <div class="box">
               <input type="radio" id="service1" name="service" value="1" required>
@@ -54,6 +63,7 @@
               <label for="service4">Digital Marketing</label>
             </div>
           </div>
+          <!-- Navigation buttons for step -->
           <div class="button-container">
             <button type="button" class="prev-btn" onclick="prevStep(1)">Back</button>
             <button type="button" class="next-btn" onclick="nextStep(3)">Next</button>
@@ -65,9 +75,12 @@
       <div class="form-step" id="step3">
         <h2>3- Set Your Budget</h2>
         <div class="content-container">
+          <!-- Input range slider for setting budget -->
           <label for="rangeInput">Budget (in $):</label>
           <input type="range" id="rangeInput" name="budget" min="1" max="12" value="1" step="1" required>
+          <!-- Displaying selected budget value -->
           <h2>Selected Budget: <span id="rangeValue">1</span></h2>
+          <!-- Navigation buttons for step -->
           <div class="button-container">
             <button type="button" class="prev-btn" onclick="prevStep(2)">Back</button>
             <button type="button" class="next-btn" onclick="nextStep(4)">Next</button>
@@ -75,25 +88,27 @@
         </div>
       </div>
 
-   <!-- Step 4: Provide Your Location -->
-<div class="form-step" id="step4">
-  <h2>4- Provide Your Location</h2>
-  <div class="content-container">
-    <div class="search">
-      <textarea class="search__input" placeholder="Type your location" rows="4" cols="50" required></textarea>
-    </div>
-    <div class="button-container">
-      <button type="button" class="prev-btn" onclick="prevStep(3)">Back</button>
-      <button type="button" class="next-btn" onclick="nextStep(5)">Next</button>
-    </div>
-  </div>
-</div>
-
+      <!-- Step 4: Provide Your Location -->
+      <div class="form-step" id="step4">
+        <h2>4- Provide Your Location</h2>
+        <div class="content-container">
+          <!-- Textarea for entering location details -->
+          <div class="search">
+            <textarea class="search__input" placeholder="Type your location" rows="4" cols="50" required></textarea>
+          </div>
+          <!-- Navigation buttons for step -->
+          <div class="button-container">
+            <button type="button" class="prev-btn" onclick="prevStep(3)">Back</button>
+            <button type="button" class="next-btn" onclick="nextStep(5)">Next</button>
+          </div>
+        </div>
+      </div>
 
       <!-- Step 5: Select Additional Features -->
       <div class="form-step" id="step5">
         <h2>5- Select Additional Features</h2>
         <div class="content-container">
+          <!-- Checkbox options for additional features -->
           <div class="checkbox-box">
             <input type="checkbox" id="feature1" name="feature" value="Feature 1" required>
             <label for="feature1">SEO Optimization</label>
@@ -110,6 +125,7 @@
             <input type="checkbox" id="feature4" name="feature" value="Feature 4" required>
             <label for="feature4">Custom Graphics</label>
           </div>
+          <!-- Navigation buttons for step -->
           <div class="button-container">
             <button type="button" class="prev-btn" onclick="prevStep(4)">Back</button>
             <button type="button" class="next-btn" onclick="nextStep(6)">Next</button>
@@ -121,6 +137,7 @@
       <div class="form-step" id="step6">
         <h2>6- Enter Your Details</h2>
         <div class="content-container">
+          <!-- Input fields for user details -->
           <div class="input-container">
             <input type="text" id="name" name="name" class="input-field" placeholder="Enter your name" required>
           </div>
@@ -128,6 +145,7 @@
             <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email" required>
           </div>
           <div class="input-container">
+            <!-- International telephone input field -->
             <div class="phone-input-wrapper">
               <input type="text" id="phone" name="phone" class="input-field" placeholder="Enter your phone number" required>
             </div>
@@ -135,6 +153,7 @@
           <div class="input-container">
             <input type="text" id="company" name="company" class="input-field" placeholder="Enter your company name (optional)">
           </div>
+          <!-- Navigation buttons for step -->
           <div class="button-container">
             <button type="button" class="prev-btn" onclick="prevStep(5)">Back</button>
             <button type="button" class="next-btn" onclick="nextStep(7)">Next</button>
@@ -143,13 +162,12 @@
       </div>
 
       <!-- Step 7: Form Completed -->
-      <div class="form-step" id="step7">
-        
-      </div>
+      <div class="form-step" id="step7"></div>
 
       <!-- Modal for successful submission -->
       <div id="modal" class="modal">
         <div class="modal-content">
+          <!-- Thank you message and modal close button -->
           <div>
             <h2>Thank you for submitting!</h2>
             <p>Your form has been successfully submitted.</p>
@@ -161,7 +179,7 @@
     </form>
   </div>
 
-  <!-- External JS script for form interactions -->
+  <!-- Linking external JavaScript file for form logic -->
   <script src="script.js"></script>
 </body>
 </html>
