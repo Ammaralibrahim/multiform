@@ -550,8 +550,8 @@ button:hover {
 .results-container {
   position: absolute;
   top: 60px;
-  left: 26px;
-  width: 92.7%;
+  left: 5%; /* Daha küçük ekranlarda yanaşık durmasını sağlar */
+  width: 90%; /* Küçük ekranlar için dinamik genişlik */
   max-height: 200px;
   padding: 0;
   margin-top: 0px;
@@ -601,6 +601,36 @@ button:hover {
 .item:active {
   background-color: #2a89f5;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .results-container {
+    top: 50px; /* Daha mobil dostu yerleşim */
+    left: 5%; /* Sol tarafa yanaşık */
+    width: 90%; /* Genişliği dinamik yap */
+    max-height: 150px; /* Daha küçük bir yükseklik */
+  }
+
+  .item {
+    padding: 10px 15px;
+    font-size: 14px; /* Daha küçük font boyutu */
+  }
+}
+
+@media (max-width: 480px) {
+  .results-container {
+    top: 40px;
+    left: 5%;
+    width: 90%;
+    max-height: 120px;
+  }
+
+  .item {
+    padding: 10px 12px;
+    font-size: 14px; /* Mobil cihazlar için daha kompakt boyut */
+  }
+}
+
 
 /* Küçük ekranlarda uyumluluk */
 @media (max-width: 600px) {
