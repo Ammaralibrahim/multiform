@@ -94,7 +94,7 @@
         <div class="content-container">
           <!-- Textarea for entering location details -->
           <div class="search">
-            <textarea class="search__input" placeholder="Type your location" rows="4" cols="50" required></textarea>
+            <textarea class="search__input" placeholder="Type your location" rows="6" cols="50" required></textarea>
           </div>
           <!-- Navigation buttons for step -->
           <div class="button-container">
@@ -110,21 +110,22 @@
         <div class="content-container">
           <!-- Checkbox options for additional features -->
           <div class="checkbox-box">
-            <input type="checkbox" id="feature1" name="feature" value="Feature 1" required>
+            <input type="checkbox" id="feature1" name="feature" value="Feature 1">
             <label for="feature1">SEO Optimization</label>
           </div>
           <div class="checkbox-box">
-            <input type="checkbox" id="feature2" name="feature" value="Feature 2" required>
+            <input type="checkbox" id="feature2" name="feature" value="Feature 2">
             <label for="feature2">E-Commerce Integration</label>
           </div>
           <div class="checkbox-box">
-            <input type="checkbox" id="feature3" name="feature" value="Feature 3" required>
+            <input type="checkbox" id="feature3" name="feature" value="Feature 3">
             <label for="feature3">24/7 Support</label>
           </div>
           <div class="checkbox-box">
-            <input type="checkbox" id="feature4" name="feature" value="Feature 4" required>
+            <input type="checkbox" id="feature4" name="feature" value="Feature 4">
             <label for="feature4">Custom Graphics</label>
           </div>
+          
           <!-- Navigation buttons for step -->
           <div class="button-container">
             <button type="button" class="prev-btn" onclick="prevStep(4)">Back</button>
@@ -133,33 +134,42 @@
         </div>
       </div>
 
-      <!-- Step 6: Enter Your Details -->
-      <div class="form-step" id="step6">
-        <h2>6- Enter Your Details</h2>
-        <div class="content-container">
-          <!-- Input fields for user details -->
-          <div class="input-container">
-            <input type="text" id="name" name="name" class="input-field" placeholder="Enter your name" required>
-          </div>
-          <div class="input-container">
-            <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email" required>
-          </div>
-          <div class="input-container">
-            <!-- International telephone input field -->
-            <div class="phone-input-wrapper">
-              <input type="text" id="phone" name="phone" class="input-field" placeholder="Enter your phone number" required>
-            </div>
-          </div>
-          <div class="input-container">
-            <input type="text" id="company" name="company" class="input-field" placeholder="Enter your company name (optional)">
-          </div>
-          <!-- Navigation buttons for step -->
-          <div class="button-container">
-            <button type="button" class="prev-btn" onclick="prevStep(5)">Back</button>
-            <button type="button" class="next-btn" onclick="nextStep(7)">Next</button>
-          </div>
-        </div>
+     <!-- Step 6: Enter Your Details -->
+<!-- Step 6: Enter Your Details -->
+<div class="form-step" id="step6">
+  <h2>6- Enter Your Details</h2>
+  <div class="content-container">
+    <!-- Input fields for user details -->
+    <div class="input-container">
+      <input type="text" id="name" name="name" class="input-field" placeholder="Enter your name" required>
+    </div>
+    <div class="input-container">
+      <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email" required>
+    </div>
+    <div class="input-container">
+      <!-- International telephone input field -->
+      <div class="phone-input-wrapper">
+        <input type="text" id="phone" name="phone" class="input-field" placeholder="Enter your phone number" required>
       </div>
+    </div>
+    <div class="input-container">
+      <input type="text" id="company" name="company" class="input-field" placeholder="Enter your company name (optional)">
+    </div>
+
+    <!-- Terms and Conditions checkbox -->
+    <div class="terms-container">
+      <input type="checkbox" id="terms" name="terms" required>
+      <label for="terms">Kullanım koşullarını kabul ediyorum</label>
+    </div>
+
+    <!-- Navigation buttons for step -->
+    <div class="button-container">
+      <button type="button" class="prev-btn" onclick="prevStep(5)">Back</button>
+      <button type="button" class="next-btn" onclick="nextStep(7)">Next</button>
+    </div>
+  </div>
+</div>
+
 
       <!-- Step 7: Form Completed -->
       <div class="form-step" id="step7"></div>

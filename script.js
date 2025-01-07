@@ -1,35 +1,38 @@
 // Function to show the current step with a smooth transition effect
-function showStep(step) {
+function showStep(step, direction = 'forward') {
   const currentStepElement = document.getElementById(`step${currentStep}`); // Get the current step element
   const nextStepElement = document.getElementById(`step${step}`); // Get the next step element
 
-  // Add a blur effect to the current step for visual transition
-  currentStepElement.classList.add('blur');
+  // Add the appropriate sliding effect based on the direction
+  if (direction === 'forward') {
+    currentStepElement.classList.add('slide-out-right');  // Slide current step out to the right
+    nextStepElement.classList.add('slide-in-left');      // Slide next step in from the left
+  } else {
+    currentStepElement.classList.add('slide-out-left');  // Slide current step out to the left
+    nextStepElement.classList.add('slide-in-right');     // Slide next step in from the right
+  }
 
-  // Add a sliding-out effect to the current step
-  currentStepElement.classList.add('slide-out');
-
-  // Display the next step element and ensure it's initially hidden before animation
+  // Make the next step visible and ensure it's initially hidden before animation
   nextStepElement.style.display = 'block';
-  nextStepElement.classList.remove('slide-in');
 
   // Add a small delay to allow the current step to transition out before showing the next step
   setTimeout(() => {
-    // Remove blur and slide-out effects from the current step after transition
-    currentStepElement.classList.remove('active', 'blur', 'slide-out');
+    // Remove the slide effects from the current step after transition
+    currentStepElement.classList.remove('active', 'slide-out-left', 'slide-out-right');
 
-    // Add slide-in animation for the next step
-    nextStepElement.classList.add('active', 'slide-in');
+    // Add the active class to the next step
+    nextStepElement.classList.add('active');
 
-    // Remove the slide-in effect after the animation completes (matching CSS duration)
+    // Remove the sliding effect from the next step after the animation completes (matching CSS duration)
     setTimeout(() => {
-      nextStepElement.classList.remove('slide-in');
+      nextStepElement.classList.remove('slide-in-left', 'slide-in-right');
     }, 500); // 500ms matches the CSS animation duration
   }, 500);
 
   // Update the global variable to reflect the new current step
   currentStep = step;
 }
+
 
 // Function to move to the next step
 function nextStep(step) {
@@ -53,15 +56,37 @@ function validateStep(step) {
   const currentStepElement = document.getElementById(`step${step}`); // Get the current step element
   const inputs = currentStepElement.querySelectorAll('input[required]'); // Get all required inputs in the current step
 
-  // Check if all required inputs are filled
-  for (let input of inputs) {
-    if (!input.value.trim()) { // If an input is empty, show an alert and return false
-      alert('Please fill out all required fields.');
-      return false;
+  // 5. Step checkbox validation (check at least one checkbox is selected)
+  if (step === 5) {
+    const checkboxes = currentStepElement.querySelectorAll('input[type="checkbox"]');
+    const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked); // Check if at least one checkbox is selected
+    if (!isChecked) {
+      alert('Please select at least one additional feature.');
+      return false; // Prevent step change
     }
   }
-  return true; // Return true if validation passes
+
+  // Step 6 checkbox validation (terms and conditions checkbox)
+  if (step === 6) {
+    const termsCheckbox = document.getElementById('terms');
+    if (!termsCheckbox.checked) {
+      alert('You must accept the terms and conditions to proceed.');
+      return false; // Prevent step change
+    }
+  }
+
+  // Validate all required input fields in other steps
+  for (let input of inputs) {
+    if (!input.value.trim()) { // If any required input is empty
+      alert('Please fill out all required fields.');
+      return false; // Prevent step change
+    }
+  }
+  
+  return true; // If all validations pass
 }
+
+
 
 // Update the displayed range input value dynamically
 const rangeInput = document.getElementById('rangeInput'); // Range input element
@@ -83,8 +108,38 @@ const services = [
   "SEO Optimization",
   "Digital Marketing",
   "Content Writing",
-  "Data Analysis"
-]; // List of available services
+  "Data Analysis",
+  "Video Editing",
+  "3D Animation",
+  "Social Media Management",
+  "Copywriting",
+  "Brand Strategy",
+  "Business Consulting",
+  "E-Commerce Development",
+  "Web Design",
+  "Mobile App Design",
+  "Logo Design",
+  "Photography Services",
+  "Event Management",
+  "Online Advertising",
+  "Public Relations",
+  "Virtual Assistance",
+  "Email Marketing",
+  "Project Management",
+  "Market Research",
+  "Cloud Solutions",
+  "UX/UI Testing",
+  "CRM Development",
+  "SEO Audits",
+  "Affiliate Marketing",
+  "App Localization",
+  "IT Support",
+  "Tech Support",
+  "Video Production",
+  "App Maintenance",
+  "Hosting Services"
+];
+
 
 const searchInput = document.getElementById('search'); // Search input field
 const resultsContainer = document.getElementById('results'); // Container for search results
@@ -120,14 +175,19 @@ function selectService(service) {
   resultsContainer.innerHTML = ""; // Clear the search results
 }
 
-// Add an event listener to the search input for real-time filtering
+// Add an event listener to the search input to display results when clicked
+searchInput.addEventListener('click', () => {
+  resultsContainer.style.display = "block"; // Show the dropdown when input is clicked
+  searchService(); // Call the search service function to display the options
+});
+
+// Add event listener to handle input changes and filter the dropdown content
 searchInput.addEventListener('input', searchService);
 
 // Toggle the visibility of the search results when the chevron icon is clicked
 chev.addEventListener('click', () => {
   resultsContainer.style.display = resultsContainer.style.display === "block" ? "none" : "block";
 });
-
 // Function to display the modal upon form completion
 function showModal() {
   const modal = document.getElementById('modal'); // Get the modal element

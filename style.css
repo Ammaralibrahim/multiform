@@ -196,8 +196,8 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   background: linear-gradient(135deg, #444, #000);
   border: 2px solid #fff;
   border-radius: 50%;
@@ -743,4 +743,53 @@ button:hover {
 
 .iti--separate-dial-code .iti__selected-flag {
   background-color: transparent !important;
+}
+
+
+/* Terms and Conditions Container Styling */
+.terms-container {
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #888; /* Daha yumuşak gri renk */
+}
+
+/* Checkbox Styling */
+.terms-container input[type="checkbox"] {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #A0D4FF; /* Soft blue color for the checkbox */
+  border-radius: 10px; /* Yumuşak köşeler */
+  background-color: #8a8a8a; /* Hafif gri-mavi arka plan */
+  border: 2px solid #0d0d0d; /* Hafif gri kenarlık */
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; /* Yumuşak geçişler */
+}
+
+/* Label Styling */
+.terms-container label {
+  font-size: 15px;
+  font-weight: 100;
+  color: #888; /* Hafif gri yazı rengi */
+  cursor: pointer;
+  transition: color 0.3s ease; /* Label renk geçişi */
+}
+
+/* Hover effect for checkbox */
+.terms-container input[type="checkbox"]:hover {
+  transform: scale(1.1); /* Hafif büyüme efekti */
+  background-color: #E4F1FB; /* Yumuşak mavi arka plan hover efekti */
+  border-color: #A0D4FF; /* Hafif mavi kenarlık hover efekti */
+}
+
+/* Focus effect for checkbox */
+.terms-container input[type="checkbox"]:focus {
+  outline: none;
+  border-color: #A0D4FF; /* Mavi kenarlık focus durumunda */
+}
+
+/* Hover effect for label */
+.terms-container label:hover {
 }
