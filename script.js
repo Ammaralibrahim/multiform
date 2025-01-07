@@ -3,17 +3,17 @@ function showStep(step, direction = 'forward') {
   const currentStepElement = document.getElementById(`step${currentStep}`); // Get the current step element
   const nextStepElement = document.getElementById(`step${step}`); // Get the next step element
 
+  // Reset the visibility of the next step and prepare for transition
+  nextStepElement.style.display = 'block';
+
   // Add the appropriate sliding effect based on the direction
   if (direction === 'forward') {
-    currentStepElement.classList.add('slide-out-right');  // Slide current step out to the right
-    nextStepElement.classList.add('slide-in-left');      // Slide next step in from the left
-  } else {
     currentStepElement.classList.add('slide-out-left');  // Slide current step out to the left
     nextStepElement.classList.add('slide-in-right');     // Slide next step in from the right
+  } else {
+    currentStepElement.classList.add('slide-out-right'); // Slide current step out to the right
+    nextStepElement.classList.add('slide-in-left');      // Slide next step in from the left
   }
-
-  // Make the next step visible and ensure it's initially hidden before animation
-  nextStepElement.style.display = 'block';
 
   // Add a small delay to allow the current step to transition out before showing the next step
   setTimeout(() => {
@@ -32,6 +32,7 @@ function showStep(step, direction = 'forward') {
   // Update the global variable to reflect the new current step
   currentStep = step;
 }
+
 
 
 // Function to move to the next step
