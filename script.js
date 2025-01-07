@@ -1,92 +1,88 @@
-// Function to show the current step with a smooth transition effect
-function showStep(step, direction = 'forward') {
-  const currentStepElement = document.getElementById(`step${currentStep}`); // Get the current step element
-  const nextStepElement = document.getElementById(`step${step}`); // Get the next step element
 
-  // Reset the visibility of the next step and prepare for transition
+// Array to hold the total number of steps
+const totalSteps = document.querySelectorAll('.form-step').length;
+
+// Function to show the current step
+function showStep(step, direction = 'forward') {
+  const currentStepElement = document.getElementById(`step${currentStep}`);
+  const nextStepElement = document.getElementById(`step${step}`);
+
+  // Hide the current step
+  currentStepElement.style.display = 'none';
   nextStepElement.style.display = 'block';
 
-  // Add the appropriate sliding effect based on the direction
+  // Add transition effects
   if (direction === 'forward') {
-    currentStepElement.classList.add('slide-out-left');  // Slide current step out to the left
-    nextStepElement.classList.add('slide-in-right');     // Slide next step in from the right
+    currentStepElement.classList.add('slide-out-left');
+    nextStepElement.classList.add('slide-in-right');
   } else {
-    currentStepElement.classList.add('slide-out-right'); // Slide current step out to the right
-    nextStepElement.classList.add('slide-in-left');      // Slide next step in from the left
+    currentStepElement.classList.add('slide-out-right');
+    nextStepElement.classList.add('slide-in-left');
   }
 
-  // Add a small delay to allow the current step to transition out before showing the next step
+  // After transition, update the current step and remove transition effects
   setTimeout(() => {
-    // Remove the slide effects from the current step after transition
     currentStepElement.classList.remove('active', 'slide-out-left', 'slide-out-right');
-
-    // Add the active class to the next step
     nextStepElement.classList.add('active');
-
-    // Remove the sliding effect from the next step after the animation completes (matching CSS duration)
-    setTimeout(() => {
-      nextStepElement.classList.remove('slide-in-left', 'slide-in-right');
-    }, 500); // 500ms matches the CSS animation duration
+    nextStepElement.classList.remove('slide-in-left', 'slide-in-right');
   }, 500);
 
-  // Update the global variable to reflect the new current step
   currentStep = step;
 }
 
-
-
-// Function to move to the next step
-function nextStep(step) {
-  if (validateStep(currentStep)) { // Validate the current step before moving forward
-    showStep(step); // Show the desired step
-
-    // If the last step (Step 7) is reached, display the modal
-    if (step === 7) {
-      showModal();
+// Function to handle navigation to the next step
+function nextStep() {
+  if (validateStep(currentStep)) {
+    const nextStep = currentStep + 1;
+    if (nextStep <= totalSteps) {
+      showStep(nextStep);
+    }
+    if (nextStep === totalSteps) {
+      showModal(); // Show modal if it's the last step
     }
   }
 }
 
-// Function to move to the previous step
-function prevStep(step) {
-  showStep(step); // Show the previous step without validation
+// Function to handle navigation to the previous step
+function prevStep() {
+  const prevStep = currentStep - 1;
+  if (prevStep >= 1) {
+    showStep(prevStep, 'backward');
+  }
 }
 
-// Function to validate inputs of the current step
+// Validation logic for each step
 function validateStep(step) {
-  const currentStepElement = document.getElementById(`step${step}`); // Get the current step element
-  const inputs = currentStepElement.querySelectorAll('input[required]'); // Get all required inputs in the current step
-
-  // 5. Step checkbox validation (check at least one checkbox is selected)
+  const currentStepElement = document.getElementById(`step${step}`);
+  const inputs = currentStepElement.querySelectorAll('input[required]');
+  
+  for (let input of inputs) {
+    if (!input.value.trim()) {
+      alert('Please fill out all required fields.');
+      return false;
+    }
+  }
+  
+  // Special validation for step 5 (checkbox validation)
   if (step === 5) {
     const checkboxes = currentStepElement.querySelectorAll('input[type="checkbox"]');
-    const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked); // Check if at least one checkbox is selected
-    if (!isChecked) {
+    if (!Array.from(checkboxes).some(checkbox => checkbox.checked)) {
       alert('Please select at least one additional feature.');
-      return false; // Prevent step change
+      return false;
     }
   }
 
-  // Step 6 checkbox validation (terms and conditions checkbox)
+  // Special validation for step 6 (terms and conditions checkbox)
   if (step === 6) {
     const termsCheckbox = document.getElementById('terms');
     if (!termsCheckbox.checked) {
       alert('You must accept the terms and conditions to proceed.');
-      return false; // Prevent step change
+      return false;
     }
   }
 
-  // Validate all required input fields in other steps
-  for (let input of inputs) {
-    if (!input.value.trim()) { // If any required input is empty
-      alert('Please fill out all required fields.');
-      return false; // Prevent step change
-    }
-  }
-  
-  return true; // If all validations pass
+  return true;
 }
-
 
 
 // Update the displayed range input value dynamically
