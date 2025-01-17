@@ -7,28 +7,23 @@ function showStep(step, direction = 'forward') {
   const currentStepElement = document.getElementById(`step${currentStep}`);
   const nextStepElement = document.getElementById(`step${step}`);
 
-  // Hide the current step
-  currentStepElement.style.display = 'none';
-  nextStepElement.style.display = 'block';
-
-  // Add transition effects
-  if (direction === 'forward') {
-    currentStepElement.classList.add('slide-out-left');
-    nextStepElement.classList.add('slide-in-right');
-  } else {
-    currentStepElement.classList.add('slide-out-right');
-    nextStepElement.classList.add('slide-in-left');
-  }
-
-  // After transition, update the current step and remove transition effects
+  // Hide the current step with a slide-out effect
+  currentStepElement.classList.remove('active');
+  currentStepElement.classList.add(direction === 'forward' ? 'slide-out-left' : 'slide-out-right');
+  
+  // Show the next step with a slide-in effect
+  nextStepElement.classList.add('active');
+  nextStepElement.classList.add(direction === 'forward' ? 'slide-in-right' : 'slide-in-left');
+  
+  // Wait for the transition to finish before resetting classes
   setTimeout(() => {
-    currentStepElement.classList.remove('active', 'slide-out-left', 'slide-out-right');
-    nextStepElement.classList.add('active');
+    currentStepElement.classList.remove('slide-out-left', 'slide-out-right');
     nextStepElement.classList.remove('slide-in-left', 'slide-in-right');
-  }, 500);
-
+  }, 500);  // Duration of the transition
+  
   currentStep = step;
 }
+
 
 // Function to handle navigation to the next step
 function nextStep() {
@@ -83,6 +78,18 @@ function validateStep(step) {
 
   return true;
 }
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function (event) {
+  const isClickInsideSearchInput = searchInput.contains(event.target);
+  const isClickInsideResults = resultsContainer.contains(event.target);
+  const isClickInsideChevron = chev.contains(event.target);
+
+  if (!isClickInsideSearchInput && !isClickInsideResults && !isClickInsideChevron) {
+    resultsContainer.style.display = 'none'; // Hide the dropdown
+  }
+});
+
 
 
 // Update the displayed range input value dynamically
