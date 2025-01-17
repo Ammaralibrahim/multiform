@@ -775,14 +775,14 @@ button:hover {
 
 /* Modal Styles */
 .modal {
-  display: none; 
+  display: none;
   position: fixed;
-  z-index: 1; 
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  background-color: rgba(0, 0, 0, 0.4); 
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -790,11 +790,28 @@ button:hover {
   justify-content: center;
   justify-items: center;
   background-color: #fff;
-  width: 100%;
-  height: 100%;
+  width: 100%; /* Genişliği biraz daha daraltıyoruz */
+  height: auto; /* İçeriğe göre yükseklik otomatik olacak */
+  height: 100%; /* En fazla ekranın %80'ini kaplayacak */
   text-align: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 100%; /* Mobilde biraz daha geniş yapıyoruz */
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 100%; /* Daha küçük ekranlarda daha fazla genişlik */
+  }
+}
+
 
 #closeModalBtn {
   background: linear-gradient(135deg, #444, #000); 
