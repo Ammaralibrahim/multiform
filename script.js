@@ -26,17 +26,25 @@ function showStep(step, direction = 'forward') {
 
 
 // Function to handle navigation to the next step
+// Function to handle navigation to the next step
 function nextStep() {
   if (validateStep(currentStep)) {
     const nextStep = currentStep + 1;
-    if (nextStep <= totalSteps) {
-      showStep(nextStep);
-    }
-    if (nextStep === totalSteps) {
+
+    // If it's the last step, just show the modal without transition
+    if (nextStep > totalSteps) {
       showModal(); // Show modal if it's the last step
+    } else {
+      showStep(nextStep); // Proceed to the next step with transition
+    }
+
+    // If it's the last step, do not perform a next step transition
+    if (nextStep === totalSteps) {
+      showModal(); // Show modal without step transition
     }
   }
 }
+
 
 // Function to handle navigation to the previous step
 function prevStep() {

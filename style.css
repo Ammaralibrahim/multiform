@@ -778,8 +778,8 @@ button:hover {
   position: fixed;
   top: 0;
   left: 0;
-  width: full;
-  height: full;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   justify-content: center;
   align-items: center;
@@ -793,8 +793,8 @@ button:hover {
       background-color: white;
       border-radius: 8px;
       padding: 20px;
-      width: full;
-      height: full;
+      width: auto;
+      height: 100vh;
       text-align: center;
       box-sizing: border-box;
       animation: fadeIn 0.3s ease;
@@ -848,7 +848,7 @@ button:hover {
 /* Make modal responsive on smaller screens */
 @media (max-width: 600px) {
   .modal-content {
-    width: full; /* Adjust width for smaller screens */
+    width: auto; /* Adjust width for smaller screens */
     padding: 15px;
   }
 
