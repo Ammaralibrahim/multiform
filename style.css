@@ -772,43 +772,89 @@ button:hover {
     max-width: 100%;
   }
 }
-
-/* Modal Styles */
+/* Modal background */
 .modal {
-  display: none;
+  display: none; /* Hide by default */
   position: fixed;
-  z-index: 1;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-  display: flex;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   justify-content: center;
-  justify-items: center;
-  background-color: #fff;
-  width: 100%; /* Genişliği biraz daha daraltıyoruz */
-  height: auto; /* İçeriğe göre yükseklik otomatik olacak */
-  height: 100%; /* En fazla ekranın %80'ini kaplayacak */
-  text-align: center;
   align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 8px;
+  z-index: 1000;
 }
 
-@media (max-width: 768px) {
-  .modal-content {
-    width: 100%; /* Mobilde biraz daha geniş yapıyoruz */
+/* Modal content */
+.modal-content {
+  display: flex
+  ;
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      box-sizing: border-box;
+      animation: fadeIn 0.3s ease;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+}
+
+/* Modal body */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* Thank you heading and paragraph */
+.modal-body h2,
+.modal-body p {
+  margin: 10px 0;
+}
+
+/* Close button */
+.close-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Close button hover effect */
+.close-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Animation for fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-@media (max-width: 480px) {
+/* Make modal responsive on smaller screens */
+@media (max-width: 600px) {
   .modal-content {
-    width: 100%; /* Daha küçük ekranlarda daha fazla genişlik */
+    width: 100%; /* Adjust width for smaller screens */
+    padding: 15px;
+  }
+
+  .close-btn {
+    padding: 8px 16px;
+    font-size: 14px;
   }
 }
 
