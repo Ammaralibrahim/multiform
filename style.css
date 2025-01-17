@@ -690,7 +690,7 @@ button:hover {
   top: 60px;
   left: 5%;
   width: 90%;
-  height: 185px;
+  max-height: 220px;
   padding: 0;
   margin-top: 0px;
   overflow-y: auto;
