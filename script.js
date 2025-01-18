@@ -25,25 +25,31 @@ function showStep(step, direction = 'forward') {
 }
 
 
-// Function to handle navigation to the next step
-// Function to handle navigation to the next step
+// Function to handle next step for step 6 specifically
+function completeForm() {
+  resetForm(); // Reset the form fields and step
+  showModal(); // Display the modal
+}
+
+// Remove animation and next for step 6
 function nextStep() {
   if (validateStep(currentStep)) {
     const nextStep = currentStep + 1;
 
-    // If it's the last step, just show the modal without transition
+    // Special case for step 6
+    if (currentStep === 6) {
+      completeForm(); // Reset form and show modal
+      return; // Exit the function to prevent further actions
+    }
+
     if (nextStep > totalSteps) {
       showModal(); // Show modal if it's the last step
     } else {
       showStep(nextStep); // Proceed to the next step with transition
     }
-
-    // If it's the last step, do not perform a next step transition
-    if (nextStep === totalSteps) {
-      showModal(); // Show modal without step transition
-    }
   }
 }
+
 
 
 // Function to handle navigation to the previous step
@@ -211,7 +217,11 @@ document.getElementById('closeModalBtn').addEventListener('click', function () {
   const modal = document.getElementById('modal'); // Get the modal element
   modal.style.display = 'none'; // Hide the modal
   resetForm(); // Reset the form fields and step
+  
+  // Reload the page
+  location.reload(); // Reload the page after closing the modal
 });
+
 
 // Prevent default form submission and show modal on submit
 document.getElementById('multiStepForm').addEventListener('submit', function (event) {
