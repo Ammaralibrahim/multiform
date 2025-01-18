@@ -8,6 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden; /* Disable scrolling */
+  height: 100vh; /* Full-screen height */
   color: #444; /* Softer text color */
   position: relative; /* Needed for proper positioning of buttons */
 }
