@@ -12,7 +12,7 @@ body {
   color: #444; /* Softer text color */
   position: relative; /* Needed for proper positioning of buttons */
 }
-
+ 
 /* Form Container */
 .form-container {
   padding: 30px;
