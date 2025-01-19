@@ -71,15 +71,21 @@ const firstStepTitle = document.getElementById("firstStepTitle"); // Get the con
 
 let isMovedUp = false; // To track if the container is already moved up
 
-// Listen for the click event on the search input field
-searchField.addEventListener("click", function () {
-  if (window.innerWidth <= 768 && !isMovedUp) { // Only apply for mobile screens and when the container is not already moved
-    document.body.style.position = "relative"; // Ensure the body is in relative position
-    container.style.transform = "translateY(-200px)"; // Move the entire container up by 140px
-    firstStepTitle.style.transform = "translateY(-80px)"; // Move the title up by the same amount
-    isMovedUp = true; // Mark that the container has been moved up
+container.addEventListener("click", function(event) {
+  if (event.target === searchField && window.innerWidth <= 768 && !isMovedUp) {
+      // Move container up
+      document.body.style.position = "relative";
+      container.style.transform = "translateY(-200px)";
+      firstStepTitle.style.transform = "translateY(-80px)";
+      isMovedUp = true;
+  } else if (event.target !== searchField && isMovedUp) {
+      // Reset container position
+      container.style.transform = "translateY(0)";
+      firstStepTitle.style.transform = "translateY(0)";
+      isMovedUp = false;
   }
 });
+
 
 // Listen for when the user clicks anywhere outside the search input field
 document.addEventListener("click", function (event) {
