@@ -792,6 +792,7 @@ button:hover {
     top: 50px;
     left: 5%;
     width: 90%;
+    max-height: 180px;
   }
 
   .item {
@@ -805,7 +806,9 @@ button:hover {
     top: 40px;
     left: 5%;
     width: 90%;
+    max-height: 180px;
   }
+  
 
   .item {
     padding: 10px 12px;
