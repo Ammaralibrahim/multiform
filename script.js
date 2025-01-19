@@ -65,22 +65,35 @@ function prevStep() {
   }
 }
 
-const searchField = document.getElementById("search"); // Get the search input element
-const container = document.getElementById("container"); // Get the container element that wraps the input and dropdown
-const firstStepTitle = document.getElementById("firstStepTitle"); // Get the container element for the title of the first step
+let isKeyboardVisible = false; // To track if the keyboard is visible
 
-let isMovedUp = false; // To track if the container is already moved up
+// Function to handle keyboard visibility change
+function handleKeyboardVisibility() {
+  const windowHeight = window.innerHeight; // Get the window height
+  const bodyHeight = document.body.clientHeight; // Get the body height
 
-// Listen for the click event on the search input field
-searchField.addEventListener("click", function () {
-  if (window.innerWidth <= 768 && !isMovedUp) { // Only apply for mobile screens and when the container is not already moved
-    document.body.style.position = "relative"; // Ensure the body is in relative position
-    container.style.transform = "translateY(-140px)"; // Move the entire container up by 140px
-    isMovedUp = true; // Mark that the container has been moved up
+  // If the window height decreases, it indicates that the keyboard is visible
+  if (bodyHeight - windowHeight > 100) {
+    if (!isKeyboardVisible) {
+      document.body.style.position = "relative"; // Ensure the body is in relative position
+      container.style.transform = "translateY(-140px)"; // Move the entire container up by 140px
+      isKeyboardVisible = true; // Mark that the keyboard is visible
+    }
+  } else {
+    if (isKeyboardVisible) {
+      container.style.transform = "translateY(0)"; // Reset the container position
+      isKeyboardVisible = false; // Mark that the keyboard is hidden
+    }
   }
-});
+}
 
-// Listen for when the user clicks anywhere outside the search input field
+// Listen for the resize event to detect keyboard visibility
+window.addEventListener("resize", handleKeyboardVisibility);
+
+// Initialize the function to run when the page loads
+handleKeyboardVisibility();
+
+// Ensure that clicking outside the search input still closes the dropdown as before
 document.addEventListener("click", function (event) {
   if (!searchField.contains(event.target) && isMovedUp) {
     container.style.transform = "translateY(0)"; // Reset the container position
