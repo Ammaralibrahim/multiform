@@ -295,19 +295,3 @@ window.addEventListener('resize', () => {
   }
 });
 
-// Klavye açıldığında input'u yukarı kaydırmak için bir fonksiyon
-function adjustForKeyboard() {
-  if (window.innerHeight < document.documentElement.clientHeight) {
-    // Klavye açıldığında, sayfayı biraz yukarı kaydır
-    document.body.style.paddingBottom = '200px'; // Klavye yüksekliğine göre ayar yapılabilir
-  } else {
-    // Klavye kapandığında, sayfayı eski haline getir
-    document.body.style.paddingBottom = '0';
-  }
-}
-
-// Sayfa boyutu değiştiğinde (özellikle klavye açıldığında veya kapandığında) kaydırmayı uygula
-window.addEventListener('resize', adjustForKeyboard);
-
-// İlk başta da kontrol et
-adjustForKeyboard();
