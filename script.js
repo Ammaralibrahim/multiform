@@ -76,7 +76,7 @@ searchField.addEventListener("click", function () {
   if (window.innerWidth <= 768 && !isMovedUp) { // Only apply for mobile screens and when the container is not already moved
     document.body.style.position = "relative"; // Ensure the body is in relative position
     container.style.transform = "translateY(-140px)"; // Move the entire container up by 140px
-    firstStepTitle.style.transform = "translateY(-140px)"; // Move the title up by the same amount
+    firstStepTitle.style.transform = "translateY(-100px)"; // Move the title up by the same amount
     isMovedUp = true; // Mark that the container has been moved up
   }
 });
