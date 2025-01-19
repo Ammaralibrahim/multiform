@@ -1,91 +1,98 @@
+let currentStep = 1; // Başlangıç adımı
 
-// Array to hold the total number of steps
-const totalSteps = document.querySelectorAll('.form-step').length;
+// Toplam adım sayısını belirleyin
+const totalSteps = document.querySelectorAll(".form-step").length;
 
-// Function to show the current step
-function showStep(step, direction = 'forward') {
+// Adım değiştirici fonksiyon
+function showStep(step, direction = "forward") {
   const currentStepElement = document.getElementById(`step${currentStep}`);
   const nextStepElement = document.getElementById(`step${step}`);
 
-  // Hide the current step with a slide-out effect
-  currentStepElement.classList.remove('active');
-  currentStepElement.classList.add(direction === 'forward' ? 'slide-out-left' : 'slide-out-right');
-  
-  // Show the next step with a slide-in effect
-  nextStepElement.classList.add('active');
-  nextStepElement.classList.add(direction === 'forward' ? 'slide-in-right' : 'slide-in-left');
-  
-  // Wait for the transition to finish before resetting classes
+  // Mevcut adımı gizle
+  currentStepElement.classList.remove("active");
+  if (currentStep <= 6) {
+    currentStepElement.classList.add(
+      direction === "forward" ? "slide-out-left" : "slide-out-right"
+    );
+  }
+
+  // Yeni adımı göster
+  nextStepElement.classList.add("active");
+  if (step <= 6) {
+    nextStepElement.classList.add(
+      direction === "forward" ? "slide-in-right" : "slide-in-left"
+    );
+  }
+
+  // Geçiş tamamlanınca sınıfları sıfırla
   setTimeout(() => {
-    currentStepElement.classList.remove('slide-out-left', 'slide-out-right');
-    nextStepElement.classList.remove('slide-in-left', 'slide-in-right');
-  }, 500);  // Duration of the transition
-  
-  currentStep = step;
+    currentStepElement.classList.remove("slide-out-left", "slide-out-right");
+    nextStepElement.classList.remove("slide-in-left", "slide-in-right");
+  }, 600); // CSS animasyon süresi ile senkronize olmalı
+
+  currentStep = step; // Geçerli adımı güncelle
 }
 
-
-// Function to handle next step for step 6 specifically
 function completeForm() {
-  resetForm(); // Reset the form fields and step
-  showModal(); // Display the modal
+  // Modalı göster
+  showModal();
 }
 
-// Remove animation and next for step 6
+// İleri adım
 function nextStep() {
   if (validateStep(currentStep)) {
     const nextStep = currentStep + 1;
 
-    // Special case for step 6
+    // Step 6'ya özel durum
     if (currentStep === 6) {
-      completeForm(); // Reset form and show modal
-      return; // Exit the function to prevent further actions
+      completeForm(); // Formu sıfırla ve modalı göster
+      return; // İşlemi bitir
     }
 
     if (nextStep > totalSteps) {
-      showModal(); // Show modal if it's the last step
+      showModal(); // Son adımda modal göster
     } else {
-      showStep(nextStep); // Proceed to the next step with transition
+      showStep(nextStep); // Bir sonraki adıma geç
     }
   }
 }
 
-
-
-// Function to handle navigation to the previous step
+// Geri adım
 function prevStep() {
   const prevStep = currentStep - 1;
   if (prevStep >= 1) {
-    showStep(prevStep, 'backward');
+    showStep(prevStep, "backward");
   }
 }
 
 // Validation logic for each step
 function validateStep(step) {
   const currentStepElement = document.getElementById(`step${step}`);
-  const inputs = currentStepElement.querySelectorAll('input[required]');
-  
+  const inputs = currentStepElement.querySelectorAll("input[required]");
+
   for (let input of inputs) {
     if (!input.value.trim()) {
-      alert('Please fill out all required fields.');
+      alert("Please fill out all required fields.");
       return false;
     }
   }
-  
+
   // Special validation for step 5 (checkbox validation)
   if (step === 5) {
-    const checkboxes = currentStepElement.querySelectorAll('input[type="checkbox"]');
-    if (!Array.from(checkboxes).some(checkbox => checkbox.checked)) {
-      alert('Please select at least one additional feature.');
+    const checkboxes = currentStepElement.querySelectorAll(
+      'input[type="checkbox"]'
+    );
+    if (!Array.from(checkboxes).some((checkbox) => checkbox.checked)) {
+      alert("Please select at least one additional feature.");
       return false;
     }
   }
 
   // Special validation for step 6 (terms and conditions checkbox)
   if (step === 6) {
-    const termsCheckbox = document.getElementById('terms');
+    const termsCheckbox = document.getElementById("terms");
     if (!termsCheckbox.checked) {
-      alert('You must accept the terms and conditions to proceed.');
+      alert("You must accept the terms and conditions to proceed.");
       return false;
     }
   }
@@ -94,28 +101,29 @@ function validateStep(step) {
 }
 
 // Close dropdown when clicking outside
-document.addEventListener('click', function (event) {
+document.addEventListener("click", function (event) {
   const isClickInsideSearchInput = searchInput.contains(event.target);
   const isClickInsideResults = resultsContainer.contains(event.target);
   const isClickInsideChevron = chev.contains(event.target);
 
-  if (!isClickInsideSearchInput && !isClickInsideResults && !isClickInsideChevron) {
-    resultsContainer.style.display = 'none'; // Hide the dropdown
+  if (
+    !isClickInsideSearchInput &&
+    !isClickInsideResults &&
+    !isClickInsideChevron
+  ) {
+    resultsContainer.style.display = "none"; // Hide the dropdown
   }
 });
 
-
-
 // Update the displayed range input value dynamically
-const rangeInput = document.getElementById('rangeInput'); // Range input element
-const rangeValue = document.getElementById('rangeValue'); // Element to display the range value
+const rangeInput = document.getElementById("rangeInput"); // Range input element
+const rangeValue = document.getElementById("rangeValue"); // Element to display the range value
 
-rangeInput.addEventListener('input', function () {
+rangeInput.addEventListener("input", function () {
   rangeValue.textContent = rangeInput.value; // Update the displayed value whenever the range input changes
 });
 
 // Initialize the first step when the page loads
-let currentStep = 1; // Set the initial step to 1
 showStep(currentStep); // Display the first step
 
 // Search functionality for the dropdown
@@ -155,33 +163,34 @@ const services = [
   "Tech Support",
   "Video Production",
   "App Maintenance",
-  "Hosting Services"
+  "Hosting Services",
 ];
 
-
-const searchInput = document.getElementById('search'); // Search input field
-const resultsContainer = document.getElementById('results'); // Container for search results
-const chev = document.getElementById('chev'); // Chevron icon for toggling dropdown
+const searchInput = document.getElementById("search"); // Search input field
+const resultsContainer = document.getElementById("results"); // Container for search results
+const chev = document.getElementById("chev"); // Chevron icon for toggling dropdown
 
 // Function to filter and display services based on search query
 function searchService() {
   const query = searchInput.value.toLowerCase(); // Convert input to lowercase for case-insensitive matching
   resultsContainer.innerHTML = ""; // Clear previous search results
 
-  const filteredServices = services.filter(service => service.toLowerCase().includes(query)); // Filter services by query
+  const filteredServices = services.filter((service) =>
+    service.toLowerCase().includes(query)
+  ); // Filter services by query
 
   // Display filtered services or "No results found"
   if (filteredServices.length > 0) {
-    filteredServices.forEach(service => {
-      const item = document.createElement('div'); // Create a div for each service
-      item.classList.add('item'); // Add a class for styling
+    filteredServices.forEach((service) => {
+      const item = document.createElement("div"); // Create a div for each service
+      item.classList.add("item"); // Add a class for styling
       item.textContent = service; // Set the service name as text
       item.onclick = () => selectService(service); // Add click event to select service
       resultsContainer.appendChild(item); // Append the service item to the container
     });
   } else {
-    const noResultItem = document.createElement('div'); // Create a div for "No results found"
-    noResultItem.classList.add('item'); // Add a class for styling
+    const noResultItem = document.createElement("div"); // Create a div for "No results found"
+    noResultItem.classList.add("item"); // Add a class for styling
     noResultItem.textContent = "No results found"; // Set the text
     resultsContainer.appendChild(noResultItem); // Append to the container
   }
@@ -194,60 +203,65 @@ function selectService(service) {
 }
 
 // Add an event listener to the search input to display results when clicked
-searchInput.addEventListener('click', () => {
+searchInput.addEventListener("click", () => {
   resultsContainer.style.display = "block"; // Show the dropdown when input is clicked
   searchService(); // Call the search service function to display the options
 });
 
 // Add event listener to handle input changes and filter the dropdown content
-searchInput.addEventListener('input', searchService);
+searchInput.addEventListener("input", searchService);
 
 // Toggle the visibility of the search results when the chevron icon is clicked
-chev.addEventListener('click', () => {
-  resultsContainer.style.display = resultsContainer.style.display === "block" ? "none" : "block";
+chev.addEventListener("click", () => {
+  resultsContainer.style.display =
+    resultsContainer.style.display === "block" ? "none" : "block";
 });
-// Function to display the modal upon form completion
+
 function showModal() {
-  const modal = document.getElementById('modal'); // Get the modal element
-  modal.style.display = 'block'; // Set the modal to be visible
+  // Show modal and overlay
+  document.getElementById("modal").style.display = "block";
 }
 
-// Event listener for closing the modal and resetting the form
-document.getElementById('closeModalBtn').addEventListener('click', function () {
-  const modal = document.getElementById('modal'); // Get the modal element
-  modal.style.display = 'none'; // Hide the modal
-  resetForm(); // Reset the form fields and step
-  
-  // Reload the page
-  location.reload(); // Reload the page after closing the modal
-});
+document.getElementById("closeModalBtn").addEventListener("click", function () {
+  // Hide modal and overlay
+  document.getElementById("modal").style.display = "none";
 
+  // Trigger form submission programmatically
+  document.getElementById("multiStepForm").submit();
+
+  // Reload the page after form submission
+  location.reload();
+});
 
 // Prevent default form submission and show modal on submit
-document.getElementById('multiStepForm').addEventListener('submit', function (event) {
-  event.preventDefault(); // Prevent the default behavior of form submission
-  resetForm(); // Reset all form fields
-  showModal(); // Display the modal
-});
+document
+  .getElementById("multiStepForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the default behavior of form submission
+    resetForm(); // Reset all form fields
+    showModal(); // Display the modal
+  });
 
 // Function to reset the form to its initial state
 function resetForm() {
-  const form = document.getElementById('multiStepForm'); // Get the form element
+  const form = document.getElementById("multiStepForm"); // Get the form element
   form.reset(); // Clear all form inputs
   currentStep = 1; // Reset to the first step
   showStep(currentStep); // Display the first step
 }
 
 // Initialize the phone number input with intl-tel-input library
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   const phoneInput = document.querySelector("#phone"); // Get the phone input field
   const iti = window.intlTelInput(phoneInput, {
     initialCountry: "us", // Set the default country to the US
     separateDialCode: true, // Display the country code separately
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js" // Include the utils script for formatting
+    utilsScript:
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/utils.js", // Include the utils script for formatting
   });
 
   // Example: Get the selected country code and formatted phone number
-  const countryCode = iti.getSelectedCountryData().dialCode; // Get the dial code
-  const phoneNumber = iti.getNumber(); // Get the full phone number
+  const countryCode = iti.getSelectedCountryData().dialCode; // Get the country dial code
+  const formattedPhoneNumber = iti.getNumber(); // Get the formatted phone number
+  console.log(countryCode, formattedPhoneNumber); // Log to console for testing
 });

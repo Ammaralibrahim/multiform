@@ -71,24 +71,44 @@ label {
   transform: translateX(0); /* Position the step normally */
 }
 
+
 .form-step.slide-out-left {
-  transform: translateX(-100%); /* Slide out to the left */
-  opacity: 0;
+  transform: translateX(-230%); /* Sola kaydır */
+  opacity: 0; /* Görünürlüğü azalt */
 }
 
 .form-step.slide-out-right {
-  transform: translateX(100%); /* Slide out to the right */
-  opacity: 0;
+  transform: translateX(230%); /* Sağa kaydır */
+  opacity: 0; /* Görünürlüğü azalt */
 }
 
 .form-step.slide-in-left {
-  transform: translateX(-100%); /* Slide in from the left */
-  opacity: 1;
+  transform: translateX(-230%); /* Soldan gir */
+  opacity: 1; /* Görünür yap */
 }
 
 .form-step.slide-in-right {
-  transform: translateX(100%); /* Slide in from the right */
-  opacity: 1;
+  transform: translateX(230%); /* Sağdan gir */
+  opacity: 1; /* Görünür yap */
+}
+
+/* Mobil cihazlar için ayar */
+@media (max-width: 768px) {
+  .form-step.slide-out-left {
+    transform: translateX(-110%); /* Mobilde sola kaydırmayı 110% yap */
+  }
+
+  .form-step.slide-out-right {
+    transform: translateX(110%); /* Mobilde sağa kaydırmayı 110% yap */
+  }
+
+  .form-step.slide-in-left {
+    transform: translateX(-110%); /* Mobilde soldan gelmeyi 110% yap */
+  }
+
+  .form-step.slide-in-right {
+    transform: translateX(110%); /* Mobilde sağdan gelmeyi 110% yap */
+  }
 }
 
 
@@ -773,67 +793,54 @@ button:hover {
     max-width: 100%;
   }
 }
-/* Modal background */
+/* Modal Styles */
 .modal {
-  display: none; /* Hide by default */
   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 30px;
+  display: flex
+;
+  justify-content: center;
+  justify-items: center;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.modal-content {
+  text-align: center;
+}
+
+button.close-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button.close-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Dark background for modal */
+.modal-overlay {
+  position: fixe; /* Absolute position instead of fixed */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  display: flex; /* Center content inside the modal */
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-}
-
-/* Modal content */
-.modal-content {
-  display: flex
-  ;
-      background-color: white;
-      border-radius: 8px;
-      padding: 20px;
-      width: auto;
-      height: 100vh;
-      text-align: center;
-      box-sizing: border-box;
-      animation: fadeIn 0.3s ease;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-}
-
-/* Modal body */
-.modal-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-}
-
-/* Thank you heading and paragraph */
-.modal-body h2,
-.modal-body p {
-  margin: 10px 0;
-}
-
-/* Close button */
-.close-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-/* Close button hover effect */
-.close-btn:hover {
-  background-color: #0056b3;
 }
 
 /* Animation for fade-in effect */
