@@ -439,6 +439,16 @@ button:hover {
 
 
 /* Rest of your form styles */
+/* Search input'unda focus olduğunda stil değişikliği */
+.search-focused {
+  background-color: #f0f0f0; /* Örneğin arka plan rengini değiştirme */
+  border-color: #007bff; /* Border rengini değiştirme */
+  padding: 10px; /* Padding'i artırma */
+  transition: all 0.3s ease; /* Yumuşak geçiş */
+}
+
+
+
 
 .search {
   display: flex;
@@ -675,6 +685,7 @@ button:hover {
   position: relative;
   width: 90%;
   margin: 10px auto;
+  transition: transform 0.3s ease-out; /* Smooth transition for the translateY property */
 }
 
 /* Search Input Style */

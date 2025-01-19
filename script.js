@@ -65,6 +65,30 @@ function prevStep() {
   }
 }
 
+const searchField = document.getElementById("search"); // Get the search input element
+const container = document.getElementById("container"); // Get the container element that wraps the input and dropdown
+const firstStepTitle = document.getElementById("firstStepTitle"); // Get the container element for the title of the first step
+
+let isMovedUp = false; // To track if the container is already moved up
+
+// Listen for the click event on the search input field
+searchField.addEventListener("click", function () {
+  if (window.innerWidth <= 768 && !isMovedUp) { // Only apply for mobile screens and when the container is not already moved
+    document.body.style.position = "relative"; // Ensure the body is in relative position
+    container.style.transform = "translateY(-140px)"; // Move the entire container up by 140px
+    isMovedUp = true; // Mark that the container has been moved up
+  }
+});
+
+// Listen for when the user clicks anywhere outside the search input field
+document.addEventListener("click", function (event) {
+  if (!searchField.contains(event.target) && isMovedUp) {
+    container.style.transform = "translateY(0)"; // Reset the container position
+    isMovedUp = false; // Mark that the container has been reset
+  }
+});
+
+
 // Validation logic for each step
 function validateStep(step) {
   const currentStepElement = document.getElementById(`step${step}`);
@@ -267,24 +291,4 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 
-const inputField = document.getElementById("search"); // or any other input field you want to target
 
-// Function to handle keyboard visibility change
-function handleKeyboardVisibility() {
-  // Check if the window height has decreased (keyboard is open)
-  const isKeyboardOpen = window.innerHeight < document.documentElement.clientHeight;
-
-  if (isKeyboardOpen) {
-    // Move the input up by 200px when the keyboard opens
-    inputField.style.transform = "translateY(-200px)";
-  } else { 
-    // Reset the position when the keyboard closes
-    inputField.style.transform = "translateY(0)";
-  }
-}
-
-// Event listener for resizing (keyboard opens or closes)
-window.addEventListener("resize", handleKeyboardVisibility);
-
-// Initial check on page load
-handleKeyboardVisibility();
