@@ -265,3 +265,32 @@ window.addEventListener("DOMContentLoaded", () => {
   const formattedPhoneNumber = iti.getNumber(); // Get the formatted phone number
   console.log(countryCode, formattedPhoneNumber); // Log to console for testing
 });
+
+
+// Klavye açıldığında ve kapandığında formun üst kısmını kaydıran event listener
+const inputFields = document.querySelectorAll('input, textarea'); // Tüm input alanları ve textarea'lar
+
+inputFields.forEach(input => {
+  input.addEventListener('focus', () => {
+    // Input'a odaklanıldığında formu yukarı kaydır
+    const step = document.getElementById(`step${currentStep}`);
+    step.classList.add('input-focused');
+  });
+
+  input.addEventListener('blur', () => {
+    // Input'tan çıkıldığında formu eski haline getir
+    const step = document.getElementById(`step${currentStep}`);
+    step.classList.remove('input-focused');
+  });
+});
+
+// Dinamik olarak mobil klavye açıldığında ekranın kaymasını engellemek için
+window.addEventListener('resize', () => {
+  if (window.innerHeight < 500) { // Klavye açıldığında ekran yüksekliği değişir
+    const step = document.getElementById(`step${currentStep}`);
+    step.classList.add('input-focused');
+  } else {
+    const step = document.getElementById(`step${currentStep}`);
+    step.classList.remove('input-focused');
+  }
+});

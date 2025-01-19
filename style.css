@@ -950,3 +950,22 @@ button.close-btn:hover {
 /* Hover effect for label */
 .terms-container label:hover {
 }
+
+
+/* Ekstra bir sınıf: Formu yukarı kaydırmak için */
+.input-focused {
+  position: relative;
+  top: -50px; /* Klavye açıldığında yukarı kaydırma */
+  transition: top 0.3s ease;
+}
+
+/* Mobil cihazlar için stil */
+@media screen and (max-width: 768px) {
+  .form-step {
+    position: relative;
+  }
+
+  .input-focused {
+    top: -160px; /* Klavye açıldığında input yukarı kayacak */
+  }
+}
