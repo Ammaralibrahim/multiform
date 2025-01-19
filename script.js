@@ -267,31 +267,24 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Klavye açıldığında ve kapandığında formun üst kısmını kaydıran event listener
-const inputFields = document.querySelectorAll('input, textarea'); // Tüm input alanları ve textarea'lar
+const inputField = document.getElementById("search"); // or any other input field you want to target
 
-inputFields.forEach(input => {
-  input.addEventListener('focus', () => {
-    // Input'a odaklanıldığında formu yukarı kaydır
-    const step = document.getElementById(`step${currentStep}`);
-    step.classList.add('input-focused');
-  });
+// Function to handle keyboard visibility change
+function handleKeyboardVisibility() {
+  // Check if the window height has decreased (keyboard is open)
+  const isKeyboardOpen = window.innerHeight < document.documentElement.clientHeight;
 
-  input.addEventListener('blur', () => {
-    // Input'tan çıkıldığında formu eski haline getir
-    const step = document.getElementById(`step${currentStep}`);
-    step.classList.remove('input-focused');
-  });
-});
-
-// Dinamik olarak mobil klavye açıldığında ekranın kaymasını engellemek için
-window.addEventListener('resize', () => {
-  if (window.innerHeight < 500) { // Klavye açıldığında ekran yüksekliği değişir
-    const step = document.getElementById(`step${currentStep}`);
-    step.classList.add('input-focused');
-  } else {
-    const step = document.getElementById(`step${currentStep}`);
-    step.classList.remove('input-focused');
+  if (isKeyboardOpen) {
+    // Move the input up by 200px when the keyboard opens
+    inputField.style.transform = "translateY(-200px)";
+  } else { 
+    // Reset the position when the keyboard closes
+    inputField.style.transform = "translateY(0)";
   }
-});
+}
 
+// Event listener for resizing (keyboard opens or closes)
+window.addEventListener("resize", handleKeyboardVisibility);
+
+// Initial check on page load
+handleKeyboardVisibility();
