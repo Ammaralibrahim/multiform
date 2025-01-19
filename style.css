@@ -687,6 +687,20 @@ button:hover {
   margin: 10px auto;
   transition: transform 0.3s ease-out; /* Smooth transition for the translateY property */
 }
+#container,
+.firstStepTitle {
+  transition: transform 0.3s ease; /* Smooth transition for both */
+}
+
+#container {
+  position: relative;
+}
+
+.firstStepTitle {
+  position: relative;
+  z-index: 1; /* Ensure the title stays above the container */
+}
+
 
 /* Search Input Style */
 .search-input {
