@@ -76,7 +76,7 @@ container.addEventListener("click", function(event) {
       // Move container up
       document.body.style.position = "relative";
       container.style.transform = "translateY(-70px)";
-      firstStepTitle.style.transform = "translateY(-10px)";
+      firstStepTitle.style.transform = "translateY(40px)";
       isMovedUp = true;
   } else if (event.target !== searchField && isMovedUp) {
       // Reset container position
