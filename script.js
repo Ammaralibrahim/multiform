@@ -75,8 +75,8 @@ container.addEventListener("click", function(event) {
   if (event.target === searchField && window.innerWidth <= 768 && !isMovedUp) {
       // Move container up
       document.body.style.position = "relative";
-      container.style.transform = "translateY(-200px)";
-      firstStepTitle.style.transform = "translateY(-80px)";
+      container.style.transform = "translateY(-150px)";
+      firstStepTitle.style.transform = "translateY(-30px)";
       isMovedUp = true;
   } else if (event.target !== searchField && isMovedUp) {
       // Reset container position
